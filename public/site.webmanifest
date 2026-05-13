@@ -1,0 +1,14 @@
+{
+  "name": "Axion Studio",
+  "short_name": "Axion",
+  "description": "Strategy. Innovation. Industry. Premium studio for Digital Twin, Industry 4.0 and intelligent systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1ec",
+  "theme_color": "#f4f1ec",
+  "lang": "fr-DZ",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
