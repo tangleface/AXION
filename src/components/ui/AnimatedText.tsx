@@ -28,7 +28,19 @@ export function AnimatedText({ text, className = '', delay = 0, as = 'h1' }: Pro
       aria-label={text}
     >
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom pr-[0.25em]">
+        <span
+          key={i}
+          className="inline-block pr-[0.25em]"
+          /**
+           * clip-path ne masque QUE le haut (d'où sort l'animation reveal),
+           * pas le bas — les descenders (g, p, y, j, Q) restent visibles.
+           * paddingBottom donne de l'air pour ces descenders sur grandes tailles.
+           */
+          style={{
+            clipPath: 'inset(-10% -20% 0 -20%)',
+            paddingBottom: '0.15em'
+          }}
+        >
           <motion.span
             className="inline-block"
             variants={{

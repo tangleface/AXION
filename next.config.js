@@ -3,29 +3,27 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  allowedDevOrigins: ['192.168.100.32', '192.168.1.34'],
+  
+  // Export statique pour hébergement mutualisé
+  output: 'export',
+  distDir: 'out',
+  trailingSlash: true,
+  
+  // Images non optimisées (obligatoire pour l'export statique)
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: '**' }
     ]
   },
+  
+  // Origines dev
+  allowedDevOrigins: ['192.168.100.32', '192.168.1.34'],
+  
+  // Optimisation packages
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react']
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' }
-        ]
-      }
-    ];
   }
 };
 

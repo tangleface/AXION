@@ -1,0 +1,29 @@
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache navigateur
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/json "access plus 1 day"
+</IfModule>
+
+# Redirection HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirection www vers non-www (ou inverse selon préférence)
+RewriteCond %{HTTP_HOST} ^www\.axion\.dz [NC]
+RewriteRule ^(.*)$ https://axion.dz/$1 [R=301,L]
+
+# Sécurité (headers fallback si Next.js headers() ne fonctionne pas en static)
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
