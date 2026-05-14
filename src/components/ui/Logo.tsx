@@ -1,75 +1,65 @@
-import { cn } from '@/lib/utils';
+﻿import { cn } from "@/lib/utils";
 
 type LogoProps = {
   className?: string;
-  variant?: 'light' | 'dark';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "light" | "dark";
+  size?: "sm" | "md" | "lg";
   showWordmark?: boolean;
 };
 
-export function Logo({
-  className,
-  variant = 'light',
-  size = 'md',
-  showWordmark = true
-}: LogoProps) {
-  const dims = {
-    sm: { mark: 28, name: 'text-sm', sub: 'text-[8px]' },
-    md: { mark: 34, name: 'text-base', sub: 'text-[9px]' },
-    lg: { mark: 48, name: 'text-lg', sub: 'text-[10px]' }
-  }[size];
-
-  const wordmarkColor = variant === 'dark' ? 'text-cream' : 'text-ink-900';
-  const subColor = variant === 'dark' ? 'text-chrome-300/80' : 'text-ink-900/55';
+export function Logo({ className, variant = "light", size = "md", showWordmark = true }: LogoProps) {
+  const px = { sm: 32, md: 44, lg: 56 }[size];
 
   return (
-    <div className={cn('flex items-center gap-3', className)}>
-      <svg
-        width={dims.mark}
-        height={dims.mark}
-        viewBox="0 0 200 200"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        className="flex-shrink-0"
+    <span className={cn("inline-flex items-center gap-3", className)}>
+      {/* Logo SVG - plus large */}
+      <svg 
+        viewBox="350 240 740 760" 
+        style={{ height: px, width: 'auto' }}
+        className={cn("block select-none", variant === "dark" && "brightness-150 saturate-150")}
+        aria-label="Axion Studio"
       >
         <defs>
-          <linearGradient id="logo-teal" x1="50%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stopColor="#00B5C5" />
-            <stop offset="55%" stopColor="#0F6F7C" />
-            <stop offset="100%" stopColor="#063C46" />
+          <linearGradient id="axTeal" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
+            <stop offset="0" stopColor="#00B5C5"/>
+            <stop offset="0.55" stopColor="#0F6F7C"/>
+            <stop offset="1" stopColor="#063C46"/>
           </linearGradient>
         </defs>
-        {/* Top pixelated tip */}
-        <g fill="url(#logo-teal)">
-          <rect x="108" y="14" width="10" height="10" />
-          <rect x="123" y="10" width="14" height="12" />
-          <rect x="98" y="28" width="14" height="10" />
-          <rect x="116" y="26" width="22" height="12" />
-        </g>
-        {/* Main A body */}
-        <polygon points="92,44 110,44 70,170 50,170" fill="url(#logo-teal)" />
-        <polygon points="118,44 136,44 178,170 158,170" fill="url(#logo-teal)" />
-        {/* Crossbar */}
-        <rect x="76" y="118" width="76" height="12" fill="url(#logo-teal)" />
-        {/* Bottom pixelated feet */}
-        <g fill="url(#logo-teal)">
-          <rect x="32" y="174" width="14" height="10" />
-          <rect x="50" y="174" width="20" height="10" />
-          <rect x="158" y="174" width="20" height="10" />
-          <rect x="180" y="174" width="14" height="10" />
+        <g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="url(#axTeal)">
+          <g transform="translate(485.6346,761.4468)"><path d="M 0,0 H 98.043 L 11.234,-193.021 h 63.83 l 17.872,-37.277 -100.085,-1.021 -17.362,-41.362 -70.978,-1.021 -10.213,-28.085 -30.638,1.021 z"/></g>
+          <g transform="translate(600.2729,751.2341)"><path d="m 0,0 133.021,-292.34 -32.425,0.766 -12.256,27.063 -68.425,-0.255 -69.83,154.851 z"/></g>
+          <g transform="translate(526.741,782.8936)"><path d="M 0,0 -12,-27.149 H 6.128 L 18.553,0.085 Z"/></g>
+          <g transform="translate(627.8474,472.1702)"><path d="M 0,0 23.234,-50.809 71.745,-50.043 50.298,0.255 Z"/></g>
+          <g transform="translate(707.89,445.7447)"><path d="M 0,0 H 27.574 L 40.213,-27.064 11.872,-27.319 Z"/></g>
+          <g transform="translate(671.507,408)"><path d="M 0,0 18.298,-41.872 59.745,-41.957 42.128,0.34 Z"/></g>
+          <g transform="translate(726.4857,407.9149)"><path d="m 0,0 8,-19.617 18.043,-0.128 -8.458,19.522 z"/></g>
+          <g transform="translate(756.0528,400.766)"><path d="M 0,0 11.586,-28.411 37.717,-28.596 25.468,-0.324 Z"/></g>
+          <g transform="translate(452.1526,472.1702)"><path d="m 0,0 -23.234,-50.809 -48.511,0.766 21.447,50.298 z"/></g>
+          <g transform="translate(372.11,445.7447)"><path d="m 0,0 h -27.574 l -12.639,-27.064 28.341,-0.255 z"/></g>
+          <g transform="translate(408.493,408)"><path d="M 0,0 -18.298,-41.872 -59.745,-41.957 -42.128,0.34 Z"/></g>
+          <g transform="translate(353.5143,407.9149)"><path d="m 0,0 -8,-19.617 -18.043,-0.128 8.458,19.522 z"/></g>
+          <g transform="translate(323.9472,400.766)"><path d="m 0,0 -11.586,-28.411 -26.131,-0.185 12.249,28.272 z"/></g>
+          <g transform="translate(600.7836,876.3405)"><path d="m 0,0 -22.213,-48.255 h 45.958 l 21.191,48 z"/></g>
+          <g transform="translate(569.726,813.4468)"><path d="M 0,0 -18.373,-39.915 H 19.641 L 37.169,-0.211 Z"/></g>
+          <g transform="translate(499.1402,802.4725)"><path d="m 0,0 -12.697,-27.583 h 26.27 l 12.113,27.437 z"/></g>
+          <g transform="translate(540.5104,814.7186)"><path d="M 0,0 -8.812,-18.501 H 9.42 l 8.406,18.403 z"/></g>
+          <g transform="translate(551.925,855.6744)"><path d="M 0,0 -12.078,-29.051 H 12.911 L 24.433,-0.154 Z"/></g>
         </g>
       </svg>
 
+      {/* Texte "Axion Studio" */}
       {showWordmark && (
-        <div className="flex flex-col leading-none">
-          <span className={cn('font-display font-bold tracking-tight', dims.name, wordmarkColor)}>
-            Axion
-          </span>
-          <span className={cn('tracking-[0.25em] uppercase -mt-0.5', dims.sub, subColor)}>
-            Studio
-          </span>
-        </div>
+        <span className={cn(
+          "font-display font-semibold tracking-tight",
+          size === "sm" && "text-lg",
+          size === "md" && "text-xl", 
+          size === "lg" && "text-2xl",
+          variant === "light" ? "text-ink-900" : "text-cream"
+        )}>
+          Axion Studio
+        </span>
       )}
-    </div>
+    </span>
   );
 }
