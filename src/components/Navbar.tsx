@@ -7,9 +7,9 @@ import { Logo } from '@/components/ui/Logo';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '#services', label: 'Approche' },
+  { href: '#services', label: 'Piliers' },
   { href: '#digital-twin', label: 'Digital Twin' },
-  { href: '#case-studies', label: 'Secteurs' },
+  { href: '#case-studies', label: 'Environnements' },
   { href: '#about', label: 'Studio' },
   { href: '#contact', label: 'Contact' }
 ];

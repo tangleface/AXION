@@ -11,64 +11,64 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    id: 'strategy-transformation',
+    id: 'smart-industry',
     number: '01',
-    title: 'Strategy & Transformation',
-    subtitle: 'Lire avant d\'agir',
+    title: 'Smart Industry',
+    subtitle: 'Digital Twin · Operational Monitoring · Predictive Systems',
     description:
-      'Diagnostic, vision, roadmap de transformation et conduite du changement. Nous cadrons la complexité avant d\'engager les budgets.',
+      'Jumeaux numériques opérationnels, supervision temps réel, intelligence industrielle et systèmes prédictifs. L\'usine devient un écosystème lisible, pilotable et anticipable.',
     features: [
-      'Diagnostic 360° & maturité digitale',
-      'Vision & roadmap de transformation',
-      'Cas d\'usage prioritaires & ROI',
-      'Pilotage du changement'
+      'Digital Twin (jumeau numérique opérationnel)',
+      'Supervision temps réel multi-équipements',
+      'Maintenance prédictive & MRO intelligent',
+      'Vision IA qualité & traçabilité granulaire'
     ],
-    icon: 'Compass'
+    icon: 'Factory',
+    flagship: true
   },
   {
-    id: 'communication-experience',
+    id: 'smart-pharma',
     number: '02',
-    title: 'Communication & Experience',
-    subtitle: 'Le narratif qui engage',
+    title: 'Smart Pharma',
+    subtitle: 'Field Intelligence · AI-powered Signal Detection',
     description:
-      'Identité, narratif, expériences digitales et institutionnelles. Donner forme à votre récit, pour vos clients comme pour vos équipes.',
+      'Intelligence opérationnelle IA pour les opérations pharmaceutiques terrain. Détection des objections médicales, ruptures pharmacies, signaux concurrentiels, tendances de prescription.',
     features: [
-      'Identité & territoire de marque',
-      'Sites & expériences digitales',
-      'Outils commerciaux & vente B2B',
-      'Communication interne & change'
+      'Field force intelligence augmentée',
+      'Détection objections & signaux médicaux',
+      'Veille ruptures officines & supply',
+      'Analyse concurrentielle & prescription'
+    ],
+    icon: 'Activity'
+  },
+  {
+    id: 'smart-operations',
+    number: '03',
+    title: 'Smart Operations',
+    subtitle: 'MRO · Maintenance · Asset Intelligence',
+    description:
+      'Automatisation des achats pièces de rechange, maintenance prédictive, visibilité actifs, optimisation opérationnelle. Anticiper plutôt que subir.',
+    features: [
+      'Automatisation MRO & achats pièces',
+      'Asset intelligence multi-sites',
+      'Optimisation flux & coûts opérationnels',
+      'Tableaux de bord décisionnels temps réel'
+    ],
+    icon: 'Wrench'
+  },
+  {
+    id: 'digital-experience',
+    number: '04',
+    title: 'Digital Experience',
+    subtitle: 'Platforms · Interfaces · Digital Ecosystems',
+    description:
+      'Plateformes premium, interfaces décisionnelles, écosystèmes digitaux, communication et présence digitale stratégique. L\'expérience devient un outil opérationnel.',
+    features: [
+      'Plateformes & portails métiers premium',
+      'Interfaces décisionnelles haute densité',
+      'Sites & expériences digitales B2B',
+      'Communication & présence stratégique'
     ],
     icon: 'Sparkles'
-  },
-  {
-    id: 'platforms-digital-solutions',
-    number: '03',
-    title: 'Platforms & Digital Solutions',
-    subtitle: 'Le socle qui scale',
-    description:
-      'Conception et déploiement de plateformes, intégrations data, applications métiers. Le système nerveux qui fait tenir l\'ensemble.',
-    features: [
-      'Plateformes & portails métiers',
-      'Intégrations SCADA / MES / ERP',
-      'Applications mobiles & web',
-      'Architecture data & cloud'
-    ],
-    icon: 'Network'
-  },
-  {
-    id: 'industry-40',
-    number: '04',
-    title: 'Industry 4.0',
-    subtitle: 'Là où la transformation devient tangible',
-    description:
-      'Notre capacité phare. Digital Twin opérationnel, maintenance prédictive, automatisation MRO et systèmes intelligents pour sites industriels.',
-    features: [
-      'Digital Twin (jumeau numérique)',
-      'Maintenance prédictive & MRO',
-      'Vision IA qualité',
-      'Smart Building & infrastructures'
-    ],
-    icon: 'Layers3',
-    flagship: true
   }
 ];

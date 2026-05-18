@@ -1,31 +1,33 @@
 export const siteConfig = {
   name: 'Axion Studio',
   description:
-    'Axion Studio — Strategy. Innovation. Industry. Studio premium à l\'intersection de la stratégie, de la technologie et des systèmes intelligents. Quatre piliers : Strategy & Transformation · Communication & Experience · Platforms & Digital Solutions · Industry 4.0.',
+    'Axion Studio — Intelligent Systems Studio. Studio premium à l\'intersection de la stratégie, des technologies intelligentes et des systèmes opérationnels. Quatre piliers : Smart Industry · Smart Pharma · Smart Operations · Digital Experience.',
   url: 'https://axion.dz',
   ogImage: 'https://axion.dz/og-image.jpg',
   tagline: 'Designing what\'s next.',
+  taglineSub: 'Intelligent Systems for Operational Transformation.',
   keywords: [
-    'Strategy consulting',
-    'Innovation studio',
-    'Digital transformation',
-    'Industry 4.0',
-    'Industrie 4.0',
+    'Intelligent Systems Studio',
+    'Smart Industry',
+    'Smart Pharma',
+    'Smart Operations',
+    'Digital Experience',
     'Digital Twin',
     'Jumeau numérique',
-    'Smart Building',
+    'Operational Intelligence',
+    'Industrie 4.0',
+    'Industry 4.0',
     'AI industrielle',
     'IA opérationnelle',
     'Predictive Maintenance',
     'Maintenance prédictive',
-    'Visualization platforms',
+    'Field Intelligence',
     'MRO Automation',
+    'Asset Intelligence',
     'Algérie',
     'Algeria',
-    'Industrial Intelligence',
-    'Smart Infrastructure',
-    'Communication & Experience',
-    'Platforms & Digital Solutions'
+    'Strategy consulting',
+    'Operational transformation'
   ],
   contact: {
     email: 'amine@axion.dz',
@@ -62,7 +64,7 @@ export const organizationSchema = {
     availableLanguage: ['French', 'English', 'Arabic']
   },
   sameAs: [siteConfig.social.linkedin, siteConfig.social.twitter],
-  slogan: siteConfig.tagline
+  slogan: `${siteConfig.tagline} ${siteConfig.taglineSub}`
 };
 
 export const servicesSchema = {
@@ -74,37 +76,46 @@ export const servicesSchema = {
   priceRange: '$$$$',
   areaServed: { '@type': 'Country', name: 'Algeria' },
   serviceType: [
-    'Strategy & Transformation',
-    'Communication & Experience',
-    'Platforms & Digital Solutions',
-    'Industry 4.0',
+    'Smart Industry',
+    'Smart Pharma',
+    'Smart Operations',
+    'Digital Experience',
     'Digital Twin Implementation',
     'Predictive Maintenance',
-    'Smart Building Systems'
+    'Field Intelligence',
+    'Operational Transformation'
   ],
   makesOffer: [
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Strategy & Transformation',
-        description: 'Diagnostic, vision, roadmap de transformation, conduite du changement pour organisations industrielles ambitieuses.'
+        name: 'Smart Industry',
+        description: 'Digital Twin opérationnel, supervision temps réel, maintenance prédictive et systèmes intelligents pour sites industriels.'
       }
     },
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Industry 4.0 & Digital Twin',
-        description: 'Conception et déploiement de jumeaux numériques opérationnels, maintenance prédictive, automatisation MRO.'
+        name: 'Smart Pharma',
+        description: 'Field force intelligence IA, détection des signaux médicaux, supply chain pharmaceutique et qualité réglementaire.'
       }
     },
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Audit Industrie 4.0',
-        description: 'Cartographie maturité 4.0, identification des cas d\'usage à plus fort ROI, roadmap 12-24 mois.'
+        name: 'Smart Operations',
+        description: 'Automatisation MRO, maintenance prédictive multi-sites, asset intelligence et optimisation opérationnelle.'
+      }
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Digital Experience',
+        description: 'Plateformes premium, interfaces décisionnelles, écosystèmes digitaux et présence stratégique B2B.'
       }
     }
   ]

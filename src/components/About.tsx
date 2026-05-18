@@ -43,11 +43,10 @@ export function About() {
           {/* Left content */}
           <div className="lg:col-span-7">
             <SectionHeading
-              tag="Studio"
+              tag="Intelligent Systems Studio"
               title={
                 <>
-                  Un studio à l'intersection de la <span className="text-chrome-shimmer">stratégie</span>,
-                  de la <span className="text-chrome-shimmer">technologie</span> et des <span className="text-chrome-shimmer">systèmes intelligents</span>.
+                  Un studio à l'intersection de la <span className="text-chrome-shimmer">stratégie</span> et des <span className="text-chrome-shimmer">systèmes intelligents</span>.
                 </>
               }
             />
@@ -60,13 +59,17 @@ export function About() {
               className="mt-10 space-y-6 text-lg text-ink-900/65 leading-relaxed max-w-2xl"
             >
               <p>
-                Axion Studio est une structure hybride qui réunit des expertises souvent séparées :
-                la stratégie, la communication, la conception digitale, le développement de solutions
-                et l'innovation appliquée.
+                Axion Studio opère à l'intersection de la stratégie, des technologies intelligentes,
+                des systèmes opérationnels, de l'Industrie 4.0, des plateformes pilotées par IA,
+                des expériences digitales et des infrastructures de décision.
               </p>
               <p>
-                Nous concevons des systèmes qui aident les organisations à <em className="text-ink-900 not-italic font-medium">mieux comprendre</em> leurs environnements,
-                à <em className="text-ink-900 not-italic font-medium">mieux piloter</em> leurs opérations et à <em className="text-ink-900 not-italic font-medium">mieux préparer</em> leurs décisions.
+                <strong className="text-ink-900 font-medium">Notre rôle :</strong> transformer la complexité opérationnelle en
+                capacités de décision intelligentes. Nous ne construisons pas seulement des outils — nous construisons
+                des systèmes qui aident les organisations à <em className="text-ink-900 not-italic font-medium">comprendre</em>,
+                {' '}<em className="text-ink-900 not-italic font-medium">opérer</em>,
+                {' '}<em className="text-ink-900 not-italic font-medium">optimiser</em> et
+                {' '}<em className="text-ink-900 not-italic font-medium">évoluer</em>.
               </p>
             </motion.div>
 
@@ -89,10 +92,10 @@ export function About() {
                 </div>
                 <div>
                   <div className="text-4xl md:text-5xl font-display font-bold text-chrome-shimmer">
-                    06
+                    08
                   </div>
                   <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/45 mt-3">
-                    Secteurs d'intervention
+                    Environnements d'intervention
                   </div>
                 </div>
                 <div>

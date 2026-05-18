@@ -4,12 +4,12 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   
-  // Export statique pour hébergement mutualisé
+  // Export statique pour hï¿½bergement mutualisï¿½
   output: 'export',
   distDir: 'out',
   trailingSlash: true,
   
-  // Images non optimisées (obligatoire pour l'export statique)
+  // Images non optimisï¿½es (obligatoire pour l'export statique)
   images: {
     unoptimized: true,
     formats: ['image/avif', 'image/webp'],
@@ -19,7 +19,7 @@ const nextConfig = {
   },
   
   // Origines dev
-  allowedDevOrigins: ['192.168.100.32', '192.168.1.34'],
+  allowedDevOrigins: ['192.168.100.32', '192.168.1.34', '192.168.1.64'],
   
   // Optimisation packages
   experimental: {
@@ -27,4 +27,4 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig;
+module

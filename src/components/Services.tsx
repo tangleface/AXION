@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import {
-  Layers3,
-  Compass,
+  Factory,
+  Activity,
+  Wrench,
   Sparkles,
-  Network,
+  Layers3,
   ArrowUpRight,
   type LucideIcon
 } from 'lucide-react';
@@ -14,10 +15,11 @@ import { services } from '@/data/services';
 import { fadeUp, staggerContainer, easeLuxe } from '@/lib/motion-variants';
 
 const iconMap: Record<string, LucideIcon> = {
-  Layers3,
-  Compass,
+  Factory,
+  Activity,
+  Wrench,
   Sparkles,
-  Network
+  Layers3
 };
 
 export function Services() {
@@ -27,13 +29,13 @@ export function Services() {
 
       <div className="container-luxe relative">
         <SectionHeading
-          tag="Notre approche"
+          tag="Core Expertise"
           title={
             <>
-              Quatre piliers complémentaires <span className="text-chrome-shimmer">pour traiter la vision, l'expérience, la technologie et la performance opérationnelle.</span>
+              Quatre piliers stratégiques <span className="text-chrome-shimmer">pour transformer la complexité opérationnelle en capacités de décision intelligentes.</span>
             </>
           }
-          subtitle="Axion Studio est une structure hybride qui réunit des expertises souvent séparées. Notre rôle : transformer des besoins complexes en systèmes clairs, utiles et performants."
+          subtitle="De l'industriel au pharmaceutique, des opérations critiques aux expériences digitales premium — nos quatre piliers structurent toutes nos interventions."
         />
 
         <motion.div
