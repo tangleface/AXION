@@ -19,7 +19,7 @@ const nextConfig = {
   },
   
   // Origines dev
-  allowedDevOrigins: ['192.168.100.32', '192.168.1.34', '192.168.1.64'],
+  allowedDevOrigins: ['192.168.100.32', '192.168.1.34', '192.168.1.64', '192.168.43.136'],
   
   // Optimisation packages
   experimental: {
@@ -27,4 +27,4 @@ const nextConfig = {
   }
 };
 
-module
+module.exports = nextConfig;

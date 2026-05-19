@@ -9,66 +9,70 @@ export type Service = {
   flagship?: boolean;
 };
 
+/**
+ * Les 4 piliers d'Axion Studio — un même système de pensée, adaptable à
+ * chaque industrie. Aucun pilier n'est "flagship" : ils sont structurellement
+ * égaux pour signaler une posture d'innovation adaptative, et non un produit fixe.
+ */
 export const services: Service[] = [
   {
-    id: 'smart-industry',
+    id: 'insight',
     number: '01',
-    title: 'Smart Industry',
-    subtitle: 'Digital Twin · Operational Monitoring · Predictive Systems',
+    title: 'Insight',
+    subtitle: 'Strategy · Diagnostic · Problem Discovery',
     description:
-      'Jumeaux numériques opérationnels, supervision temps réel, intelligence industrielle et systèmes prédictifs. L\'usine devient un écosystème lisible, pilotable et anticipable.',
+      "Lecture stratégique et opérationnelle des enjeux avant d'engager les solutions. Nous formulons le bon problème — diagnostic, modélisation des écosystèmes, cartographie des contraintes — avant de bâtir la bonne réponse.",
     features: [
-      'Digital Twin (jumeau numérique opérationnel)',
-      'Supervision temps réel multi-équipements',
-      'Maintenance prédictive & MRO intelligent',
-      'Vision IA qualité & traçabilité granulaire'
+      'Diagnostic 360° & maturité digitale',
+      'Modélisation des enjeux métier',
+      "Cartographie d'écosystèmes opérationnels",
+      'Vision & roadmap stratégique'
     ],
-    icon: 'Factory',
-    flagship: true
+    icon: 'Compass'
   },
   {
-    id: 'smart-pharma',
+    id: 'systems',
     number: '02',
-    title: 'Smart Pharma',
-    subtitle: 'Field Intelligence · AI-powered Signal Detection',
+    title: 'Systems',
+    subtitle: 'Platforms · Automation · Smart Ecosystems',
     description:
-      'Intelligence opérationnelle IA pour les opérations pharmaceutiques terrain. Détection des objections médicales, ruptures pharmacies, signaux concurrentiels, tendances de prescription.',
+      "Plateformes, automatisation, infrastructures digitales et écosystèmes intelligents adaptés à chaque métier. Le socle qui fait tenir l'ensemble et scaler à votre rythme.",
     features: [
-      'Field force intelligence augmentée',
-      'Détection objections & signaux médicaux',
-      'Veille ruptures officines & supply',
-      'Analyse concurrentielle & prescription'
+      'Plateformes & portails métier',
+      'Intégrations data & systèmes (ERP, MES, SCADA)',
+      'Automatisation opérationnelle',
+      'Architecture cloud & sécurité'
     ],
-    icon: 'Activity'
+    icon: 'Network'
   },
   {
-    id: 'smart-operations',
+    id: 'experience',
     number: '03',
-    title: 'Smart Operations',
-    subtitle: 'MRO · Maintenance · Asset Intelligence',
+    title: 'Experience',
+    subtitle: 'Branding · UX · Digital Presence',
     description:
-      'Automatisation des achats pièces de rechange, maintenance prédictive, visibilité actifs, optimisation opérationnelle. Anticiper plutôt que subir.',
+      "Identité, communication, UX, présence digitale et expériences immersives. L'expérience devient un actif stratégique au service de la décision, de l'adoption et de l'engagement.",
     features: [
-      'Automatisation MRO & achats pièces',
-      'Asset intelligence multi-sites',
-      'Optimisation flux & coûts opérationnels',
-      'Tableaux de bord décisionnels temps réel'
-    ],
-    icon: 'Wrench'
-  },
-  {
-    id: 'digital-experience',
-    number: '04',
-    title: 'Digital Experience',
-    subtitle: 'Platforms · Interfaces · Digital Ecosystems',
-    description:
-      'Plateformes premium, interfaces décisionnelles, écosystèmes digitaux, communication et présence digitale stratégique. L\'expérience devient un outil opérationnel.',
-    features: [
-      'Plateformes & portails métiers premium',
-      'Interfaces décisionnelles haute densité',
-      'Sites & expériences digitales B2B',
+      'Identité & territoire de marque',
+      'Sites & plateformes premium',
+      'Expériences immersives B2B',
       'Communication & présence stratégique'
     ],
     icon: 'Sparkles'
+  },
+  {
+    id: 'intelligence',
+    number: '04',
+    title: 'Intelligence',
+    subtitle: 'AI · Analytics · Predictive Systems',
+    description:
+      "IA, analytics, systèmes prédictifs et automatisation intelligente. Transformer la donnée en capacités de décision augmentée et de pilotage anticipatif — quelle que soit l'industrie.",
+    features: [
+      'Modèles IA & analytics avancée',
+      'Systèmes prédictifs & signaux faibles',
+      'Automatisation intelligente',
+      'Tableaux de bord décisionnels temps réel'
+    ],
+    icon: 'Brain'
   }
 ];

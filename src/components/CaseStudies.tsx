@@ -17,13 +17,13 @@ export function CaseStudies() {
       <div className="container-luxe relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
           <SectionHeading
-            tag="High-value environments"
+            tag="Cross-industry applications"
             title={
               <>
-                Environnements <span className="text-chrome-shimmer">à forte valeur opérationnelle.</span>
+                Des écosystèmes intelligents <span className="text-chrome-shimmer">déployés à travers les industries.</span>
               </>
             }
-            subtitle="Les domaines où nos systèmes intelligents créent le plus de valeur. Aucun projet prétendu réalisé — uniquement les environnements d'intervention où Axion Studio opère."
+            subtitle="Là où nos quatre piliers se conjuguent pour créer de la valeur. Chaque environnement reçoit un système adapté — pas un produit reproductible. La preuve par l'éventail."
           />
           <motion.a
             initial={{ opacity: 0, x: 20 }}
@@ -33,7 +33,7 @@ export function CaseStudies() {
             href="#contact"
             className="group hidden md:inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-ink-900/60 hover:text-ink-900 transition-colors duration-500 self-start md:self-end"
           >
-            <span>Discuter de votre environnement</span>
+            <span>Discuter de votre contexte</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500 ease-luxe" />
           </motion.a>
         </div>

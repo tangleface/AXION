@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '#services', label: 'Piliers' },
   { href: '#digital-twin', label: 'Digital Twin' },
-  { href: '#case-studies', label: 'Environnements' },
+  { href: '#case-studies', label: 'Applications' },
   { href: '#about', label: 'Studio' },
   { href: '#contact', label: 'Contact' }
 ];

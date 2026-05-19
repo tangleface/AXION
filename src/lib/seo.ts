@@ -1,33 +1,34 @@
 export const siteConfig = {
   name: 'Axion Studio',
   description:
-    'Axion Studio — Intelligent Systems Studio. Studio premium à l\'intersection de la stratégie, des technologies intelligentes et des systèmes opérationnels. Quatre piliers : Smart Industry · Smart Pharma · Smart Operations · Digital Experience.',
+    "Axion Studio — Innovation & Intelligence Studio. Studio premium qui conçoit des systèmes intelligents adaptés à chaque industrie. Quatre piliers : Insight · Systems · Experience · Intelligence. Une posture cross-industries, pas un produit fixe.",
   url: 'https://axion.dz',
   ogImage: 'https://axion.dz/og-image.jpg',
-  tagline: 'Designing what\'s next.',
-  taglineSub: 'Intelligent Systems for Operational Transformation.',
+  tagline: "Designing what's next.",
+  taglineSub: 'Adaptive intelligence for strategic transformation.',
   keywords: [
+    'Innovation studio',
     'Intelligent Systems Studio',
-    'Smart Industry',
-    'Smart Pharma',
-    'Smart Operations',
-    'Digital Experience',
+    'Adaptive intelligence',
+    'Strategic transformation',
+    'Cross-industry systems',
+    'Insight',
+    'Systems',
+    'Experience',
+    'Intelligence',
+    'AI strategy',
+    'Predictive systems',
+    'Smart automation',
+    'Digital ecosystems',
+    'Platforms & automation',
+    'Industry 4.0',
     'Digital Twin',
     'Jumeau numérique',
     'Operational Intelligence',
-    'Industrie 4.0',
-    'Industry 4.0',
-    'AI industrielle',
-    'IA opérationnelle',
-    'Predictive Maintenance',
-    'Maintenance prédictive',
-    'Field Intelligence',
-    'MRO Automation',
-    'Asset Intelligence',
+    'Branding & UX premium',
     'Algérie',
     'Algeria',
-    'Strategy consulting',
-    'Operational transformation'
+    'Strategy consulting'
   ],
   contact: {
     email: 'amine@axion.dz',
@@ -76,46 +77,48 @@ export const servicesSchema = {
   priceRange: '$$$$',
   areaServed: { '@type': 'Country', name: 'Algeria' },
   serviceType: [
-    'Smart Industry',
-    'Smart Pharma',
-    'Smart Operations',
-    'Digital Experience',
+    'Insight — Strategy & Diagnostic',
+    'Systems — Platforms & Automation',
+    'Experience — Branding & UX',
+    'Intelligence — AI & Predictive Systems',
     'Digital Twin Implementation',
-    'Predictive Maintenance',
-    'Field Intelligence',
-    'Operational Transformation'
+    'Cross-industry Intelligent Ecosystems'
   ],
   makesOffer: [
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Smart Industry',
-        description: 'Digital Twin opérationnel, supervision temps réel, maintenance prédictive et systèmes intelligents pour sites industriels.'
+        name: 'Insight',
+        description:
+          "Diagnostic stratégique, modélisation des enjeux métier, cartographie d'écosystèmes opérationnels et roadmap de transformation."
       }
     },
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Smart Pharma',
-        description: 'Field force intelligence IA, détection des signaux médicaux, supply chain pharmaceutique et qualité réglementaire.'
+        name: 'Systems',
+        description:
+          'Plateformes métier, automatisation, intégrations data, infrastructures digitales et écosystèmes intelligents adaptés.'
       }
     },
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Smart Operations',
-        description: 'Automatisation MRO, maintenance prédictive multi-sites, asset intelligence et optimisation opérationnelle.'
+        name: 'Experience',
+        description:
+          'Identité de marque, communication, UX premium, présence digitale et expériences immersives B2B.'
       }
     },
     {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'Digital Experience',
-        description: 'Plateformes premium, interfaces décisionnelles, écosystèmes digitaux et présence stratégique B2B.'
+        name: 'Intelligence',
+        description:
+          'IA appliquée, analytics avancée, systèmes prédictifs et automatisation intelligente pour la décision augmentée.'
       }
     }
   ]

@@ -91,14 +91,14 @@ export function DigitalTwinViz() {
           className="max-w-3xl"
         >
           <div className="section-tag mb-6 text-chrome-300">
-            <span>Capacité phare — Smart Industry</span>
+            <span>Capability — Systems × Intelligence</span>
           </div>
           <h2 className="text-display-lg font-display tracking-tight text-balance text-cream">
             Digital Twin —<br />
             <span className="text-chrome-shimmer">une réplique vivante</span> de votre réalité opérationnelle.
           </h2>
           <p className="mt-6 text-lg md:text-xl text-cream/70 leading-relaxed text-balance">
-            Pas un modèle 3D. Une interface intelligente qui transforme un site, un actif ou une infrastructure en système lisible, pilotable et capable de simulation. Le bras armé de notre pilier <em className="not-italic text-cream font-medium">Smart Industry</em>.
+            Pas un modèle 3D. Une interface intelligente qui transforme un site, un actif ou une infrastructure en système lisible, pilotable et capable de simulation. L'application la plus tangible de nos piliers <em className="not-italic text-cream font-medium">Systems</em> et <em className="not-italic text-cream font-medium">Intelligence</em> — adaptable à toute industrie où les actifs critiques produisent de la donnée.
           </p>
         </motion.div>
 

@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 import {
-  Factory,
-  Activity,
-  Wrench,
+  Compass,
+  Network,
   Sparkles,
+  Brain,
   Layers3,
   ArrowUpRight,
   type LucideIcon
@@ -15,10 +15,10 @@ import { services } from '@/data/services';
 import { fadeUp, staggerContainer, easeLuxe } from '@/lib/motion-variants';
 
 const iconMap: Record<string, LucideIcon> = {
-  Factory,
-  Activity,
-  Wrench,
+  Compass,
+  Network,
   Sparkles,
+  Brain,
   Layers3
 };
 
@@ -29,13 +29,13 @@ export function Services() {
 
       <div className="container-luxe relative">
         <SectionHeading
-          tag="Core Expertise"
+          tag="Adaptive Expertise"
           title={
             <>
-              Quatre piliers stratégiques <span className="text-chrome-shimmer">pour transformer la complexité opérationnelle en capacités de décision intelligentes.</span>
+              Quatre piliers <span className="text-chrome-shimmer">complémentaires, adaptés à votre contexte.</span>
             </>
           }
-          subtitle="De l'industriel au pharmaceutique, des opérations critiques aux expériences digitales premium — nos quatre piliers structurent toutes nos interventions."
+          subtitle="Insight, Systems, Experience, Intelligence — un même système de pensée, adapté à chaque industrie. De la lecture stratégique au déploiement, nous concevons des écosystèmes intelligents qui s'ajustent à votre métier — pas un produit reproductible."
         />
 
         <motion.div

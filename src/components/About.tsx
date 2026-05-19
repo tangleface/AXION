@@ -43,10 +43,10 @@ export function About() {
           {/* Left content */}
           <div className="lg:col-span-7">
             <SectionHeading
-              tag="Intelligent Systems Studio"
+              tag="Innovation & Intelligence Studio"
               title={
                 <>
-                  Un studio à l'intersection de la <span className="text-chrome-shimmer">stratégie</span> et des <span className="text-chrome-shimmer">systèmes intelligents</span>.
+                  Un studio d'innovation à l'intersection de la <span className="text-chrome-shimmer">stratégie</span>, des <span className="text-chrome-shimmer">systèmes intelligents</span> et de l'adaptation cross-industries.
                 </>
               }
             />
@@ -59,17 +59,23 @@ export function About() {
               className="mt-10 space-y-6 text-lg text-ink-900/65 leading-relaxed max-w-2xl"
             >
               <p>
-                Axion Studio opère à l'intersection de la stratégie, des technologies intelligentes,
-                des systèmes opérationnels, de l'Industrie 4.0, des plateformes pilotées par IA,
-                des expériences digitales et des infrastructures de décision.
+                Axion Studio conçoit des écosystèmes intelligents — qui s'ajustent à votre métier,
+                votre maturité digitale et votre contexte opérationnel. Quatre piliers structurent
+                toutes nos interventions :{' '}
+                <em className="text-ink-900 not-italic font-medium">Insight</em>,{' '}
+                <em className="text-ink-900 not-italic font-medium">Systems</em>,{' '}
+                <em className="text-ink-900 not-italic font-medium">Experience</em>,{' '}
+                <em className="text-ink-900 not-italic font-medium">Intelligence</em>.
               </p>
               <p>
-                <strong className="text-ink-900 font-medium">Notre rôle :</strong> transformer la complexité opérationnelle en
-                capacités de décision intelligentes. Nous ne construisons pas seulement des outils — nous construisons
-                des systèmes qui aident les organisations à <em className="text-ink-900 not-italic font-medium">comprendre</em>,
-                {' '}<em className="text-ink-900 not-italic font-medium">opérer</em>,
-                {' '}<em className="text-ink-900 not-italic font-medium">optimiser</em> et
-                {' '}<em className="text-ink-900 not-italic font-medium">évoluer</em>.
+                <strong className="text-ink-900 font-medium">Notre rôle :</strong> transformer la complexité,
+                quelle que soit l'industrie, en capacités de décision intelligentes. Nous ne livrons pas
+                un produit fixe — nous co-concevons des systèmes qui aident les organisations à{' '}
+                <em className="text-ink-900 not-italic font-medium">comprendre</em>,{' '}
+                <em className="text-ink-900 not-italic font-medium">opérer</em>,{' '}
+                <em className="text-ink-900 not-italic font-medium">prédire</em> et{' '}
+                <em className="text-ink-900 not-italic font-medium">évoluer</em>{' '}
+                dans leur propre langage métier.
               </p>
             </motion.div>
 
@@ -95,7 +101,7 @@ export function About() {
                     08
                   </div>
                   <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/45 mt-3">
-                    Environnements d'intervention
+                    Industries adaptées
                   </div>
                 </div>
                 <div>

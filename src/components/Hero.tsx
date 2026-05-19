@@ -258,7 +258,7 @@ export function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-ink-900" />
           </span>
           <span className="text-[11px] tracking-[0.3em] uppercase text-ink-900/60">
-            Strategy · Innovation · Industry · Intelligence
+            Insight · Systems · Experience · Intelligence
           </span>
         </motion.div>
 
@@ -281,7 +281,7 @@ export function Hero() {
             transition={{ duration: 1, ease: easeLuxe, delay: 1.05 }}
             className="mt-6 font-display italic font-light text-xl md:text-2xl text-ink-900/55 leading-snug"
           >
-            Intelligent Systems for Operational Transformation.
+            Adaptive intelligence for strategic transformation.
           </motion.p>
         </div>
 
@@ -291,12 +291,14 @@ export function Hero() {
           transition={{ duration: 1, ease: easeLuxe, delay: 1.3 }}
           className="mt-10 max-w-2xl text-lg md:text-xl text-ink-900/65 leading-relaxed text-balance"
         >
-          Axion Studio conçoit des écosystèmes opérationnels intelligents — capables de{' '}
-          <em className="not-italic font-medium text-ink-900">centraliser la donnée</em>,{' '}
-          <em className="not-italic font-medium text-ink-900">monitorer en continu</em>,{' '}
-          <em className="not-italic font-medium text-ink-900">anticiper les dérives</em>{' '}
-          et nourrir la décision. Nous opérons à l'intersection de la stratégie, des technologies
-          intelligentes et des systèmes opérationnels.
+          Axion Studio est un studio d'innovation et de stratégie qui conçoit des systèmes
+          intelligents <em className="not-italic font-medium text-ink-900">adaptés à chaque industrie</em>.
+          Nous lisons la complexité de votre métier, structurons les données qui comptent et bâtissons
+          des écosystèmes capables de{' '}
+          <em className="not-italic font-medium text-ink-900">comprendre</em>,{' '}
+          <em className="not-italic font-medium text-ink-900">opérer</em>,{' '}
+          <em className="not-italic font-medium text-ink-900">prédire</em>{' '}
+          et évoluer — quel que soit votre secteur.
         </motion.p>
 
         <motion.div
@@ -328,10 +330,10 @@ export function Hero() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {[
-              { n: '01', l: 'Smart Industry', flagship: true },
-              { n: '02', l: 'Smart Pharma' },
-              { n: '03', l: 'Smart Operations' },
-              { n: '04', l: 'Digital Experience' }
+              { n: '01', l: 'Insight' },
+              { n: '02', l: 'Systems' },
+              { n: '03', l: 'Experience' },
+              { n: '04', l: 'Intelligence' }
             ].map((p, i) => (
               <motion.div
                 key={i}
@@ -340,7 +342,7 @@ export function Hero() {
                 transition={{ duration: 0.8, ease: easeLuxe, delay: 2 + i * 0.1 }}
               >
                 <div className="font-mono text-xs text-chrome-700 tracking-wider mb-2">
-                  {p.n}{p.flagship && <span className="ml-2 text-[8px] tracking-[0.2em] uppercase">Flagship</span>}
+                  {p.n}
                 </div>
                 <div className="text-base md:text-lg font-display font-medium text-ink-900 leading-tight">
                   {p.l}

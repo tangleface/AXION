@@ -4,15 +4,15 @@ import { siteConfig } from '@/lib/seo';
 
 const navigation = {
   approche: [
-    { name: 'Smart Industry', href: '#services' },
-    { name: 'Smart Pharma', href: '#services' },
-    { name: 'Smart Operations', href: '#services' },
-    { name: 'Digital Experience', href: '#services' },
+    { name: 'Insight', href: '#services' },
+    { name: 'Systems', href: '#services' },
+    { name: 'Experience', href: '#services' },
+    { name: 'Intelligence', href: '#services' },
     { name: 'Digital Twin', href: '#digital-twin' }
   ],
   studio: [
     { name: 'Studio', href: '#about' },
-    { name: 'Environnements', href: '#case-studies' },
+    { name: 'Applications', href: '#case-studies' },
     { name: 'Contact', href: '#contact' }
   ],
   resources: [
@@ -72,12 +72,12 @@ export function Footer() {
             </div>
 
             <h2 className="mt-8 text-display-lg font-display font-bold text-balance leading-[1] tracking-tight text-cream">
-              Strategy.<br />
-              Industry.<br />
+              Insight.<br />
+              Systems.<br />
               <span className="text-chrome-shimmer">Intelligence.</span>
             </h2>
             <p className="mt-6 text-cream/45 italic text-base">Designing what's next.</p>
-            <p className="mt-1 text-cream/35 italic text-sm">Intelligent Systems for Operational Transformation.</p>
+            <p className="mt-1 text-cream/35 italic text-sm">Adaptive intelligence for strategic transformation.</p>
           </div>
 
           <div className="flex flex-col justify-end space-y-6">
