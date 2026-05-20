@@ -4,11 +4,11 @@ import { siteConfig } from '@/lib/seo';
 
 const navigation = {
   approche: [
-    { name: 'Insight', href: '#services' },
-    { name: 'Systems', href: '#services' },
-    { name: 'Experience', href: '#services' },
-    { name: 'Intelligence', href: '#services' },
-    { name: 'Digital Twin', href: '#digital-twin' }
+    { name: 'Insight', href: '/insight' },
+    { name: 'Systems', href: '/systems' },
+    { name: 'Experience', href: '/experience' },
+    { name: 'Intelligence', href: '/intelligence' },
+    { name: 'Digital Twin', href: '/#digital-twin' }
   ],
   studio: [
     { name: 'Studio', href: '#about' },
@@ -76,8 +76,8 @@ export function Footer() {
               Systems.<br />
               <span className="text-chrome-shimmer">Intelligence.</span>
             </h2>
-            <p className="mt-6 text-cream/45 italic text-base">Designing what's next.</p>
-            <p className="mt-1 text-cream/35 italic text-sm">Adaptive intelligence for strategic transformation.</p>
+            <p className="mt-6 text-cream/78 italic text-base">Designing what's next.</p>
+            <p className="mt-1 text-cream/55 italic text-sm">Adaptive intelligence for strategic transformation.</p>
           </div>
 
           <div className="flex flex-col justify-end space-y-6">
@@ -98,7 +98,7 @@ export function Footer() {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="group flex items-center gap-2 text-cream/65 hover:text-chrome-300 transition-colors duration-300"
+                className="group flex items-center gap-2 text-cream/78 hover:text-chrome-300 transition-colors duration-300"
               >
                 <Mail className="w-4 h-4" />
                 <span className="truncate">{siteConfig.contact.email}</span>
@@ -107,7 +107,7 @@ export function Footer() {
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 text-cream/65 hover:text-chrome-300 transition-colors duration-300"
+                className="group flex items-center gap-2 text-cream/78 hover:text-chrome-300 transition-colors duration-300"
               >
                 <Linkedin className="w-4 h-4" />
                 <span>LinkedIn</span>
@@ -117,13 +117,13 @@ export function Footer() {
         </div>
 
         {/* Nav columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pb-12 border-b border-cream/8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pb-12 border-b border-cream/14">
           <div>
             <h3 className="text-[10px] tracking-[0.25em] uppercase text-chrome-300/80 mb-5">Approche</h3>
             <ul className="space-y-3">
               {navigation.approche.map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className="text-sm text-cream/65 hover:text-chrome-300 transition-colors duration-300">
+                  <a href={item.href} className="text-sm text-cream/78 hover:text-chrome-300 transition-colors duration-300">
                     {item.name}
                   </a>
                 </li>
@@ -135,7 +135,7 @@ export function Footer() {
             <ul className="space-y-3">
               {navigation.studio.map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className="text-sm text-cream/65 hover:text-chrome-300 transition-colors duration-300">
+                  <a href={item.href} className="text-sm text-cream/78 hover:text-chrome-300 transition-colors duration-300">
                     {item.name}
                   </a>
                 </li>
@@ -151,7 +151,7 @@ export function Footer() {
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noopener noreferrer' : undefined}
-                    className="text-sm text-cream/65 hover:text-chrome-300 transition-colors duration-300"
+                    className="text-sm text-cream/78 hover:text-chrome-300 transition-colors duration-300"
                   >
                     {item.name}
                   </a>
@@ -161,18 +161,18 @@ export function Footer() {
           </div>
           <div>
             <h3 className="text-[10px] tracking-[0.25em] uppercase text-chrome-300/80 mb-5">Contact</h3>
-            <ul className="space-y-3 text-sm text-cream/65">
+            <ul className="space-y-3 text-sm text-cream/78">
               <li>{siteConfig.contact.phone}</li>
               <li className="leading-relaxed">{siteConfig.contact.location}</li>
               <li className="pt-2">
-                <span className="text-[10px] tracking-[0.2em] uppercase text-cream/30">Réponse sous 24h</span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-cream/50">Réponse sous 24h</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom strip */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-cream/35">
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-cream/55">
           <div>© {year} {siteConfig.name}. Tous droits réservés.</div>
           <div className="flex items-center gap-4">
             <span className="hidden md:inline">Built with care in Algeria.</span>

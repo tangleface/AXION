@@ -31,7 +31,7 @@ export function CaseStudies() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: easeLuxe }}
             href="#contact"
-            className="group hidden md:inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-ink-900/60 hover:text-ink-900 transition-colors duration-500 self-start md:self-end"
+            className="group hidden md:inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-ink-900/72 hover:text-ink-900 transition-colors duration-500 self-start md:self-end"
           >
             <span>Discuter de votre contexte</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500 ease-luxe" />
@@ -43,7 +43,7 @@ export function CaseStudies() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.05 }}
           variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-900/[0.06] border border-ink-900/[0.06] rounded-2xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-900/[0.06] border border-ink-900/[0.10] rounded-2xl overflow-hidden"
         >
           {useCases.map((uc) => (
             <motion.article
@@ -60,7 +60,7 @@ export function CaseStudies() {
               </div>
 
               {/* Sector tag */}
-              <div className="text-[10px] tracking-[0.2em] uppercase text-ink-900/55 mb-3">
+              <div className="text-[10px] tracking-[0.2em] uppercase text-ink-900/65 mb-3">
                 {uc.sector}
               </div>
 
@@ -70,16 +70,16 @@ export function CaseStudies() {
               </h3>
 
               {/* Description */}
-              <p className="mt-4 text-[13.5px] leading-relaxed text-ink-900/60 flex-grow">
+              <p className="mt-4 text-[13.5px] leading-relaxed text-ink-900/72 flex-grow">
                 {uc.description}
               </p>
 
               {/* Capabilities tags */}
-              <div className="mt-6 pt-5 border-t border-ink-900/8 flex flex-wrap gap-1.5">
+              <div className="mt-6 pt-5 border-t border-ink-900/12 flex flex-wrap gap-1.5">
                 {uc.capabilities.map((cap) => (
                   <span
                     key={cap}
-                    className="px-2 py-0.5 rounded-full bg-ink-900/[0.04] border border-ink-900/8 text-[9.5px] tracking-wider uppercase text-ink-900/55"
+                    className="px-2 py-0.5 rounded-full bg-ink-900/[0.04] border border-ink-900/12 text-[9.5px] tracking-wider uppercase text-ink-900/65"
                   >
                     {cap}
                   </span>

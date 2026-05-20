@@ -21,7 +21,7 @@ const config: Config = {
         },
         // Ink (dark text on cream + occasional dark sections)
         ink: {
-          DEFAULT: '#0d0d0e',
+          DEFAULT: '#0D0D0D',
           50: '#fafafa',
           100: '#e5e5e5',
           200: '#a3a3a3',
@@ -54,19 +54,37 @@ const config: Config = {
           light: '#9a9a9d',
           dark: '#3a3a3c'
         },
-        // Teal — brand accent (logo gradient)
+        // Muted text token — replaces ad-hoc opacity for body/muted text
+        muted: {
+          DEFAULT: '#5D5D5D',
+          light: '#7A7A7A',
+          dark: '#3D3D3D'
+        },
+        // Warm background — slightly warmer than cream for premium feel
+        warm: {
+          DEFAULT: '#F6F3ED',
+          50: '#FAF8F2',
+          100: '#F6F3ED',
+          200: '#EFE9DE'
+        },
+        // Teal — brand accent (logo gradient) — refined Axion palette
         teal: {
-          DEFAULT: '#0F6F7C',
+          DEFAULT: '#0F6F78',
           50: '#E6F7F8',
           100: '#BFE9EC',
           200: '#80D2D9',
           300: '#40BBC5',
-          400: '#00B5C5',
-          500: '#0F6F7C',
+          400: '#18B6C5',      // Electric Teal
+          500: '#0F6F78',      // Primary Teal
           600: '#0B5764',
           700: '#08434D',
-          800: '#063C46',
-          900: '#042830'
+          800: '#063E46',      // Deep Teal
+          900: '#042830',
+          // Named tokens (Axion-specific)
+          ink: '#063E46',
+          primary: '#0F6F78',
+          electric: '#18B6C5',
+          glow: '#6DEAF2'
         }
       },
       fontFamily: {
@@ -85,7 +103,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         // Chrome metallic gradient (rubans argentés du PDF)
-        'chrome-shimmer': 'linear-gradient(135deg, #e8e2d6 0%, #b8b3a6 25%, #9a9485 50%, #d4ccb9 75%, #b8b3a6 100%)',
+        'chrome-shimmer': 'linear-gradient(135deg, #6b6655 0%, #2e2c22 30%, #514d40 55%, #1c1b15 80%, #6b6655 100%)',
         // Teal brand gradient (echoes the logo)
         'teal-shimmer': 'linear-gradient(135deg, #00B5C5 0%, #0F6F7C 55%, #063C46 100%)',
         // Subtle noise overlay

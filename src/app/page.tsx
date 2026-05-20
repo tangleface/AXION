@@ -1,4 +1,5 @@
 import { Hero } from '@/components/Hero';
+import { ProblemSystem } from '@/components/ProblemSystem';
 import { Services } from '@/components/Services';
 import { DigitalTwinViz } from '@/components/DigitalTwinViz';
 import { CaseStudies } from '@/components/CaseStudies';
@@ -17,6 +18,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
       <Hero />
+      <ProblemSystem />
       <Services />
       <DigitalTwinViz />
       <CaseStudies />

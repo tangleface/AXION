@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import {
   Compass,
   Network,
@@ -43,18 +44,22 @@ export function Services() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
-          className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-px bg-ink-900/[0.06] border border-ink-900/[0.06] rounded-2xl overflow-hidden"
+          className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-px bg-ink-900/[0.06] border border-ink-900/[0.10] rounded-2xl overflow-hidden"
         >
           {services.map((service) => {
             const Icon = iconMap[service.icon] ?? Layers3;
             return (
-              <motion.article
+              <Link
                 key={service.id}
+                href={`/${service.id}`}
+                className="block"
+              >
+              <motion.article
                 variants={fadeUp}
                 whileHover="hover"
                 initial="rest"
                 animate="rest"
-                className="group relative bg-cream p-8 md:p-12 transition-colors duration-700 hover:bg-cream-200"
+                className="group relative bg-cream p-8 md:p-12 transition-colors duration-700 hover:bg-cream-200 cursor-pointer h-full"
               >
                 {/* Chrome hover line */}
                 <div className="absolute top-0 left-0 right-0 h-px bg-ink-900/0 group-hover:bg-ink-900/40 transition-colors duration-700" />
@@ -92,14 +97,14 @@ export function Services() {
                 </p>
 
                 {/* Description */}
-                <p className="mt-6 text-ink-900/65 text-[15px] leading-relaxed">
+                <p className="mt-6 text-ink-900/72 text-[15px] leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Features list */}
                 <ul className="mt-8 space-y-2.5">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-[13px] text-ink-900/55">
+                    <li key={feature} className="flex items-start gap-2 text-[13px] text-ink-900/68">
                       <span className="text-chrome-600 mt-0.5">›</span>
                       <span>{feature}</span>
                     </li>
@@ -107,11 +112,12 @@ export function Services() {
                 </ul>
 
                 {/* Hover arrow */}
-                <div className="mt-10 inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-ink-900/30 group-hover:text-ink-900 transition-colors duration-500">
+                <div className="mt-10 inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-ink-900/45 group-hover:text-ink-900 transition-colors duration-500">
                   <span>En savoir plus</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500 ease-luxe" />
                 </div>
               </motion.article>
+              </Link>
             );
           })}
         </motion.div>

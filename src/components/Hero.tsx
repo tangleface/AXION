@@ -1,17 +1,16 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useMemo, useRef } from 'react';
+import Link from 'next/link';
+import { useRef } from 'react';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { AnimatedText } from '@/components/ui/AnimatedText';
 import { easeLuxe } from '@/lib/motion-variants';
 
 // ====================================================================
-// LOGO CONSTELLATION PIXEL-PERFECT
-// La silhouette pleine du logo SVG officiel (18 pièces, gradient teal)
-// est rendue en arrière-plan. Par-dessus, lignes outline animées et
-// points lumineux sur chacun des angles exacts du logo.
-// Coordonnées extraites de public/logo.svg — aucun pixel modifié.
+// AXION LOGO — symbolic identity activation (3 points -> path -> contour).
+// LOGO_PATHS = the 18 official SVG pieces (from public/logo.svg, unmodified),
+// used for the subtle silhouette watermark and the outer A contour reveal.
 // ====================================================================
 
 const LOGO_PATHS: { d: string; o: [number, number] }[] = [
@@ -35,167 +34,140 @@ const LOGO_PATHS: { d: string; o: [number, number] }[] = [
   { d: 'M 0,0 -12.078,-29.051 H 12.911 L 24.433,-0.154 Z', o: [551.925, 855.6744] }
 ];
 
-// Indexes of "key" pieces whose centroid gets a halo / pulse ring
-// 13 = top apex, 7 = right foot vertex, 12 = left foot vertex
-const KEY_PIECES = new Set([13, 7, 12]);
-
-function parsePathVertices(d: string, ox: number, oy: number): [number, number][] {
-  const cleaned = d
-    .replace(/([a-zA-Z])/g, ' $1 ')
-    .replace(/,/g, ' ')
-    .replace(/-/g, ' -')
-    .replace(/\s+/g, ' ')
-    .trim();
-  const tokens = cleaned.split(' ').filter((t) => t.length);
-
-  let x = 0;
-  let y = 0;
-  let lastCmd = '';
-  const vertices: [number, number][] = [];
-  let i = 0;
-
-  while (i < tokens.length) {
-    const t = tokens[i];
-    if (/^[a-zA-Z]$/.test(t)) {
-      lastCmd = t;
-      i++;
-      if (lastCmd === 'z' || lastCmd === 'Z') continue;
-    }
-    switch (lastCmd) {
-      case 'M':
-        x = parseFloat(tokens[i++]); y = parseFloat(tokens[i++]);
-        vertices.push([x, y]); lastCmd = 'L'; break;
-      case 'm':
-        x += parseFloat(tokens[i++]); y += parseFloat(tokens[i++]);
-        vertices.push([x, y]); lastCmd = 'l'; break;
-      case 'L':
-        x = parseFloat(tokens[i++]); y = parseFloat(tokens[i++]);
-        vertices.push([x, y]); break;
-      case 'l':
-        x += parseFloat(tokens[i++]); y += parseFloat(tokens[i++]);
-        vertices.push([x, y]); break;
-      case 'H': x = parseFloat(tokens[i++]); vertices.push([x, y]); break;
-      case 'h': x += parseFloat(tokens[i++]); vertices.push([x, y]); break;
-      case 'V': y = parseFloat(tokens[i++]); vertices.push([x, y]); break;
-      case 'v': y += parseFloat(tokens[i++]); vertices.push([x, y]); break;
-      default: i++;
-    }
-  }
-  return vertices.map(([px, py]) => [px + ox, py + oy]);
-}
-
-// matrix(1.3333,0,0,-1.3333,0,1440) — flip + scale to match logo.svg
-function applyMatrix([x, y]: [number, number]): [number, number] {
-  return [x * 1.3333333, 1440 - y * 1.3333333];
-}
-
 function HeroLogoWithConstellation() {
-  // Compute polygons (transformed) and edges/nodes once
-  const { polygons, keyNodes } = useMemo(() => {
-    const polys = LOGO_PATHS.map((p) => parsePathVertices(p.d, p.o[0], p.o[1]).map(applyMatrix));
-    const keys: [number, number][] = [];
-    polys.forEach((poly, pIdx) => {
-      if (KEY_PIECES.has(pIdx)) {
-        // pick the first vertex of the key piece as anchor for pulse
-        keys.push(poly[0]);
-      }
-    });
-    return { polygons: polys, keyNodes: keys };
-  }, []);
+  // ===================================================================
+  // AXION IDENTITY ACTIVATION
+  //   1. The 3 corner points illuminate (bottom-left, top, bottom-right).
+  //   2. A line traces the EXACT logo shape (real SVG body outline, drawn
+  //      via pathLength) to connect those corners — it follows the true
+  //      Axion form, not straight segments.
+  //   3. Once connected, EVERY piece of the logo illuminates in cascade.
+  // Narrative: corners -> connection along the real shape -> full identity.
+  // ===================================================================
+  const POINTS = [
+    { id: 'foot-l', x: 432,  y: 906, delay: 0.5 },  // bottom-left
+    { id: 'apex',   x: 801,  y: 272, delay: 0.8 },  // top / head
+    { id: 'foot-r', x: 1008, y: 906, delay: 1.1 }   // bottom-right
+  ];
+  // The connecting line = the real logo body outline (left + right halves).
+  // Stroked via pathLength so it draws along the EXACT Axion shape.
+  const BODY = new Set([0, 1]);
 
-  let lineCounter = 0;
-  let nodeCounter = 0;
+  // Timings
+  const TRACE_START = 1.4;   // line begins after the 3 corners are lit
+  const FILL_START = 3.7;    // every piece illuminates after the trace
 
   return (
-    <div className="hidden lg:block absolute right-[3%] top-1/2 -translate-y-1/2 w-[44vw] max-w-[540px] pointer-events-none">
+    <div className="hidden lg:block absolute right-[2%] top-1/2 -translate-y-1/2 w-[38vw] max-w-[560px] pointer-events-none z-0">
       <svg viewBox="350 240 740 760" className="w-full h-auto">
         <defs>
-          <linearGradient id="axTealHero" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
-            <stop offset="0" stopColor="#00B5C5" />
-            <stop offset="0.55" stopColor="#0F6F7C" />
-            <stop offset="1" stopColor="#063C46" />
+          <linearGradient id="axFill" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
+            <stop offset="0" stopColor="#18B6C5" />
+            <stop offset="0.55" stopColor="#0F6F78" />
+            <stop offset="1" stopColor="#063E46" />
           </linearGradient>
-          <radialGradient id="nodeGlowHero" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00B5C5" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="#00B5C5" stopOpacity="0" />
+          <linearGradient id="axContour" gradientUnits="userSpaceOnUse" x1="540" y1="906" x2="540" y2="272">
+            <stop offset="0" stopColor="#0F6F78" stopOpacity="0.8" />
+            <stop offset="0.5" stopColor="#18B6C5" stopOpacity="1" />
+            <stop offset="1" stopColor="#6DEAF2" stopOpacity="1" />
+          </linearGradient>
+          <radialGradient id="axGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#6DEAF2" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#18B6C5" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        {/* (A) Silhouette pleine du logo officiel — gradient teal, opacité 50% */}
+        {/* (0) Faint base so the trace reads against it */}
         <motion.g
           transform="matrix(1.3333333,0,0,-1.3333333,0,1440)"
-          fill="url(#axTealHero)"
+          fill="url(#axFill)"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
+          animate={{ opacity: 0.07 }}
           transition={{ duration: 1.2, ease: easeLuxe, delay: 0.2 }}
         >
           {LOGO_PATHS.map((p, idx) => (
-            <g key={`bg${idx}`} transform={`translate(${p.o[0]},${p.o[1]})`}>
+            <g key={`base${idx}`} transform={`translate(${p.o[0]},${p.o[1]})`}>
               <path d={p.d} />
             </g>
           ))}
         </motion.g>
 
-        {/* (B) Lignes d'outline animées (overlay) */}
-        {polygons.flatMap((poly, pIdx) =>
-          poly.map((a, vIdx) => {
-            const b = poly[(vIdx + 1) % poly.length];
-            const delay = 0.6 + lineCounter * 0.025;
-            lineCounter++;
-            return (
-              <motion.line
-                key={`l-${pIdx}-${vIdx}`}
-                x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]}
-                stroke="#0F6F7C" strokeWidth={2.5} strokeLinecap="round"
-                initial={{ opacity: 0, pathLength: 0 }}
-                animate={{ opacity: 0.6, pathLength: 1 }}
-                transition={{ duration: 0.7, ease: easeLuxe, delay }}
-              />
-            );
-          })
-        )}
+        {/* (3) FULL ILLUMINATION — every piece lights up in cascade, after the trace */}
+        <motion.g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="url(#axFill)">
+          {LOGO_PATHS.map((p, idx) => (
+            <motion.g
+              key={`fill${idx}`}
+              transform={`translate(${p.o[0]},${p.o[1]})`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              transition={{ duration: 0.5, delay: FILL_START + idx * 0.06, ease: easeLuxe }}
+            >
+              <path d={p.d} />
+            </motion.g>
+          ))}
+        </motion.g>
 
-        {/* (C) Halos doux sur les vertex clés (apex + pieds) */}
-        {keyNodes.map((n, i) => (
+        {/* (2) Connecting line = real logo outline traced (follows exact shape) */}
+        <motion.g
+          transform="matrix(1.3333333,0,0,-1.3333333,0,1440)"
+          fill="none"
+          stroke="url(#axContour)"
+          strokeWidth={2.4}
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        >
+          {LOGO_PATHS.map((p, idx) =>
+            BODY.has(idx) ? (
+              <g key={`trace${idx}`} transform={`translate(${p.o[0]},${p.o[1]})`}>
+                <motion.path
+                  d={p.d}
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{
+                    pathLength: { duration: 2.2, ease: easeLuxe, delay: TRACE_START + idx * 0.35 },
+                    opacity: { duration: 0.3, delay: TRACE_START + idx * 0.35 }
+                  }}
+                />
+              </g>
+            ) : null
+          )}
+        </motion.g>
+
+        {/* (1) Glow halos on the 3 corner points */}
+        {POINTS.map((pt) => (
           <motion.circle
-            key={`halo${i}`}
-            cx={n[0]} cy={n[1]} r={32}
-            fill="url(#nodeGlowHero)"
+            key={`glow-${pt.id}`}
+            cx={pt.x} cy={pt.y} r={34}
+            fill="url(#axGlow)"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.9 }}
-            transition={{ duration: 1.2, delay: 2.4 + i * 0.15, ease: easeLuxe }}
+            transition={{ duration: 1.0, delay: pt.delay + 0.1, ease: easeLuxe }}
           />
         ))}
 
-        {/* (D) Points lumineux sur chaque angle */}
-        {polygons.flatMap((poly, pIdx) =>
-          poly.map((v, vIdx) => {
-            const isKey = KEY_PIECES.has(pIdx) && vIdx === 0;
-            const delay = 1.8 + nodeCounter * 0.025;
-            nodeCounter++;
-            return (
-              <motion.circle
-                key={`n-${pIdx}-${vIdx}`}
-                cx={v[0]} cy={v[1]}
-                r={isKey ? 10 : 5}
-                fill={isKey ? '#00B5C5' : '#0F6F7C'}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: isKey ? 1 : 0.9 }}
-                transition={{ duration: 0.4, delay, ease: easeLuxe }}
-              />
-            );
-          })
-        )}
-
-        {/* (E) Anneaux pulsants sur les vertex clés */}
-        {keyNodes.map((n, i) => (
+        {/* (1) The 3 illuminated corner points */}
+        {POINTS.map((pt) => (
           <motion.circle
-            key={`pulse${i}`}
-            cx={n[0]} cy={n[1]}
-            fill="none" stroke="#00B5C5" strokeWidth={2}
+            key={`pt-${pt.id}`}
+            cx={pt.x} cy={pt.y} r={12}
+            fill="#18B6C5"
+            stroke="#6DEAF2"
+            strokeWidth={2}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: pt.delay, ease: easeLuxe }}
+          />
+        ))}
+
+        {/* (1) Slow pulse rings on the 3 corner points */}
+        {POINTS.map((pt, i) => (
+          <motion.circle
+            key={`pulse-${pt.id}`}
+            cx={pt.x} cy={pt.y}
+            fill="none" stroke="#6DEAF2" strokeWidth={1.4}
             initial={{ r: 12, opacity: 0 }}
-            animate={{ r: [12, 44], opacity: [0.55, 0] }}
-            transition={{ duration: 2.8, repeat: Infinity, delay: 3.5 + i * 0.5, ease: 'easeOut' }}
+            animate={{ r: [12, 46], opacity: [0.5, 0] }}
+            transition={{ duration: 3.8, repeat: Infinity, delay: 4.8 + i * 0.7, ease: 'easeOut' }}
           />
         ))}
       </svg>
@@ -213,12 +185,12 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[100svh] flex flex-col justify-center pt-32 pb-20 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-12 overflow-hidden"
     >
       {/* Cinematic light background layers */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute inset-0 grid-bg opacity-50 mask-fade-edges" />
-        <div className="absolute inset-0 bg-noise opacity-[0.2]" />
+        <div className="absolute inset-0 grid-bg opacity-30 mask-fade-edges" />
+        <div className="absolute inset-0 bg-noise opacity-[0.12]" />
         <motion.div
           className="absolute top-0 right-0 w-[60vw] h-[60vw] rounded-full"
           style={{
@@ -245,51 +217,93 @@ export function Hero() {
 
       <motion.div
         style={{ y, opacity, scale }}
-        className="container-luxe relative z-10"
+        className="container-luxe relative z-20"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: easeLuxe, delay: 0.4 }}
-          className="flex items-center gap-3 mb-10"
+          className="flex flex-col gap-2 mb-8"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink-900 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-ink-900" />
-          </span>
-          <span className="text-[11px] tracking-[0.3em] uppercase text-ink-900/60">
-            Insight · Systems · Experience · Intelligence
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink-900 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-ink-900" />
+            </span>
+            <span className="text-[11px] tracking-[0.3em] uppercase text-ink-900/80 font-semibold">
+              Insight · Systems · Experience · Intelligence
+            </span>
+          </div>
+          <div className="font-mono text-[10px] tracking-[0.25em] uppercase text-ink-900/55 pl-5">
+            Algiers · Est. 2024 · Cross-industry
+          </div>
         </motion.div>
 
-        <div className="max-w-5xl">
+        <div className="max-w-5xl relative">
+          <span className="hidden lg:block absolute -left-6 top-1 bottom-1 w-[3px] rounded-full bg-gradient-to-b from-teal-electric via-teal-primary to-transparent" aria-hidden="true" />
           <AnimatedText
             as="h1"
             text="Designing"
             className="text-display-2xl font-display text-balance leading-[0.95] text-ink-900"
             delay={0.6}
           />
-          <AnimatedText
-            as="h1"
-            text="what's next."
-            className="text-display-2xl font-display text-teal-600 text-balance leading-[0.95]"
-            delay={0.85}
-          />
+          <h1 className="text-display-2xl font-display leading-[0.95]">
+            <span
+              className="inline-block overflow-hidden align-top"
+              style={{ clipPath: 'inset(-14% -22% -14% -22%)' }}
+            >
+              <motion.span
+                className="inline-block text-axion-gradient pb-[0.12em]"
+                initial={{ y: '115%', opacity: 0 }}
+                animate={{ y: '0%', opacity: 1 }}
+                transition={{ duration: 0.95, ease: easeLuxe, delay: 0.85 }}
+              >
+                what&apos;s next.
+              </motion.span>
+            </span>
+          </h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: easeLuxe, delay: 1.05 }}
-            className="mt-6 font-display italic font-light text-xl md:text-2xl text-ink-900/55 leading-snug"
+            className="mt-6 font-display italic font-light text-xl md:text-2xl text-ink-900/78 leading-snug"
           >
             Adaptive intelligence for strategic transformation.
           </motion.p>
         </div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: easeLuxe, delay: 1.15 }}
+          className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 pl-0 max-w-2xl"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono font-semibold text-2xl text-ink-900 tracking-tight">04</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase text-ink-900/65 leading-tight">Piliers<br/>stratégiques</span>
+          </div>
+          <span className="w-px h-8 bg-ink-900/15" aria-hidden="true" />
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono font-semibold text-2xl text-ink-900 tracking-tight">08</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase text-ink-900/65 leading-tight">Industries<br/>adaptées</span>
+          </div>
+          <span className="w-px h-8 bg-ink-900/15" aria-hidden="true" />
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono font-semibold text-2xl text-ink-900 tracking-tight">50+</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase text-ink-900/65 leading-tight">Capabilities<br/>déployables</span>
+          </div>
+          <span className="w-px h-8 bg-ink-900/15" aria-hidden="true" />
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono font-semibold text-2xl text-ink-900 tracking-tight">MENA</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase text-ink-900/65 leading-tight">Zone<br/>d'intervention</span>
+          </div>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: easeLuxe, delay: 1.3 }}
-          className="mt-10 max-w-2xl text-lg md:text-xl text-ink-900/65 leading-relaxed text-balance"
+          className="mt-10 max-w-2xl text-lg md:text-xl text-ink-900/80 leading-relaxed text-balance"
         >
           Axion Studio est un studio d'innovation et de stratégie qui conçoit des systèmes
           intelligents <em className="not-italic font-medium text-ink-900">adaptés à chaque industrie</em>.
@@ -326,14 +340,14 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: easeLuxe, delay: 1.8 }}
-          className="mt-24 pt-10 border-t border-ink-900/8"
+          className="mt-16 pt-10 border-t border-ink-900/12"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {[
-              { n: '01', l: 'Insight' },
-              { n: '02', l: 'Systems' },
-              { n: '03', l: 'Experience' },
-              { n: '04', l: 'Intelligence' }
+              { n: '01', l: 'Insight', href: '/insight' },
+              { n: '02', l: 'Systems', href: '/systems' },
+              { n: '03', l: 'Experience', href: '/experience' },
+              { n: '04', l: 'Intelligence', href: '/intelligence' }
             ].map((p, i) => (
               <motion.div
                 key={i}
@@ -341,12 +355,18 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: easeLuxe, delay: 2 + i * 0.1 }}
               >
-                <div className="font-mono text-xs text-chrome-700 tracking-wider mb-2">
-                  {p.n}
-                </div>
-                <div className="text-base md:text-lg font-display font-medium text-ink-900 leading-tight">
-                  {p.l}
-                </div>
+                <Link
+                  href={p.href}
+                  className="group block py-2 -my-2 transition-colors duration-300"
+                >
+                  <div className="font-mono text-xs text-chrome-700 tracking-wider mb-2 flex items-center gap-2">
+                    {p.n}
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-ink-900">→</span>
+                  </div>
+                  <div className="text-base md:text-lg font-display font-medium text-ink-900 leading-tight group-hover:text-teal-700 transition-colors duration-300">
+                    {p.l}
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>

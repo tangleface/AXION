@@ -56,7 +56,7 @@ export function About() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
               variants={fadeUp}
-              className="mt-10 space-y-6 text-lg text-ink-900/65 leading-relaxed max-w-2xl"
+              className="mt-10 space-y-6 text-lg text-ink-900/72 leading-relaxed max-w-2xl"
             >
               <p>
                 Axion Studio conçoit des écosystèmes intelligents — qui s'ajustent à votre métier,
@@ -85,14 +85,14 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: easeLuxe, delay: 0.2 }}
-              className="mt-16 pt-10 border-t border-ink-900/8"
+              className="mt-16 pt-10 border-t border-ink-900/12"
             >
               <div className="grid grid-cols-3 gap-8">
                 <div>
                   <div className="text-4xl md:text-5xl font-display font-bold text-chrome-shimmer">
                     04
                   </div>
-                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/45 mt-3">
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/58 mt-3">
                     Piliers stratégiques
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export function About() {
                   <div className="text-4xl md:text-5xl font-display font-bold text-chrome-shimmer">
                     08
                   </div>
-                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/45 mt-3">
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/58 mt-3">
                     Industries adaptées
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export function About() {
                   <div className="text-4xl md:text-5xl font-display font-bold text-chrome-shimmer">
                     MENA
                   </div>
-                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/45 mt-3">
+                  <div className="text-[11px] tracking-[0.25em] uppercase text-ink-900/58 mt-3">
                     Zone d'intervention
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export function About() {
                 <motion.div
                   key={p.title}
                   variants={fadeUp}
-                  className="group flex items-start gap-5 py-6 border-b border-ink-900/8 last:border-0 transition-colors duration-500"
+                  className="group flex items-start gap-5 py-6 border-b border-ink-900/12 last:border-0 transition-colors duration-500"
                 >
                   <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-chrome-200 to-cream-200 border border-chrome-300/40 flex items-center justify-center group-hover:border-chrome-500/50 transition-colors duration-500">
                     <Icon className="w-5 h-5 text-ink-900" strokeWidth={1.5} />
@@ -142,7 +142,7 @@ export function About() {
                     <h3 className="font-display font-bold text-lg text-ink-900">
                       {p.title}
                     </h3>
-                    <p className="text-sm text-ink-900/55 mt-1.5 leading-relaxed">
+                    <p className="text-sm text-ink-900/68 mt-1.5 leading-relaxed">
                       {p.description}
                     </p>
                   </div>

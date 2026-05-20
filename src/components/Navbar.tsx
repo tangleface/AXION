@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { cn } from '@/lib/utils';
 
@@ -48,9 +49,9 @@ export function Navbar() {
             )}
             aria-label="Navigation principale"
           >
-            <a href="#" aria-label="Axion Studio — Accueil" className="flex-shrink-0">
+            <Link href="/" aria-label="Axion Studio — Retour à l'accueil" className="flex-shrink-0 group transition-opacity duration-300 hover:opacity-80">
               <Logo />
-            </a>
+            </Link>
 
             <ul className="hidden lg:flex items-center gap-8" role="menubar">
               {navLinks.map((link) => (

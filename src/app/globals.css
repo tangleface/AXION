@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --cream-base: 244 241 236;
+    --cream-base: 246 243 237;
     --ink-base: 13 13 14;
     --chrome-base: 184 179 166;
   }
@@ -75,7 +75,7 @@
 
   /* Chrome shimmer text effect (metallic ribbons of PDF) */
   .text-chrome-shimmer {
-    background: linear-gradient(135deg, #b8b3a6 0%, #5a5749 25%, #9a9485 50%, #3a382e 75%, #b8b3a6 100%);
+    background: linear-gradient(135deg, #6b6655 0%, #2e2c22 30%, #514d40 55%, #1c1b15 80%, #6b6655 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -93,11 +93,31 @@
     animation: shimmer 8s ease-in-out infinite;
   }
 
+  /* Premium Axion teal gradient — for hero signature "what's next."
+     MUST be applied to the element that DIRECTLY contains the text glyphs,
+     otherwise background-clip:text renders the text invisible. */
+  .text-axion-gradient {
+    display: inline-block;
+    background-image: linear-gradient(95deg, #063E46 0%, #0F6F78 26%, #18B6C5 62%, #6DEAF2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Blueprint utility — for hero background A */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(24,182,197,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(24,182,197,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
   /* Subtle grid background for light */
   .grid-bg {
     background-image:
-      linear-gradient(rgba(13, 13, 14, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(13, 13, 14, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(13, 13, 13, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 13, 13, 0.09) 1px, transparent 1px);
     background-size: 80px 80px;
   }
 

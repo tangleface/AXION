@@ -31,7 +31,7 @@ export const siteConfig = {
     'Strategy consulting'
   ],
   contact: {
-    email: 'amine@axion.dz',
+    email: 'contact@axionstudio.dz',
     phone: '+213 770 79 56 95',
     location: 'Dely Brahim — Coopérative Dar El Dounia, Alger, Algérie'
   },
