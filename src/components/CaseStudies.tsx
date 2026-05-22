@@ -49,14 +49,14 @@ export function CaseStudies() {
             <motion.article
               key={uc.id}
               variants={fadeUp}
-              className="group relative bg-cream p-7 md:p-8 hover:bg-cream-200 transition-colors duration-700 flex flex-col"
+              className="relative bg-cream p-7 md:p-8 flex flex-col"
             >
-              {/* Top: number + arrow */}
-              <div className="flex items-start justify-between mb-6">
+              {/* Top: index marker */}
+              <div className="flex items-center gap-2 mb-6">
                 <span className="font-mono text-[10px] tracking-wider text-chrome-700">
                   {uc.number}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-ink-900/20 group-hover:text-ink-900 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-luxe" />
+                <span className="h-px w-6 bg-ink-900/15" aria-hidden="true" />
               </div>
 
               {/* Sector tag */}
