@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="340 209 760 760">
   <defs>
-    <linearGradient id="bg-apple" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f4f1ec"/>
+    <linearGradient id="bgApple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6f3ed"/>
       <stop offset="100%" stop-color="#e8e2d6"/>
     </linearGradient>
-    <linearGradient id="teal-apple" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#00B5C5"/>
-      <stop offset="55%" stop-color="#0F6F7C"/>
-      <stop offset="100%" stop-color="#063C46"/>
+    <linearGradient id="axTealApple" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
+      <stop offset="0" stop-color="#18B6C5"/>
+      <stop offset="0.55" stop-color="#0F6F78"/>
+      <stop offset="1" stop-color="#063E46"/>
     </linearGradient>
   </defs>
-
-  <!-- Rounded background — iOS expects a filled tile -->
-  <rect width="200" height="200" rx="44" fill="url(#bg-apple)"/>
-
-  <!-- Pixelated A — scaled down to fit with padding -->
-  <g transform="translate(20, 20) scale(0.8)">
-    <g fill="url(#teal-apple)">
-      <rect x="108" y="14" width="10" height="10"/>
-      <rect x="123" y="10" width="14" height="12"/>
-      <rect x="98" y="28" width="14" height="10"/>
-      <rect x="116" y="26" width="22" height="12"/>
-    </g>
-    <polygon points="92,44 110,44 70,170 50,170" fill="url(#teal-apple)"/>
-    <polygon points="118,44 136,44 178,170 158,170" fill="url(#teal-apple)"/>
-    <rect x="76" y="118" width="76" height="12" fill="url(#teal-apple)"/>
-    <g fill="url(#teal-apple)">
-      <rect x="32" y="174" width="14" height="10"/>
-      <rect x="50" y="174" width="20" height="10"/>
-      <rect x="158" y="174" width="20" height="10"/>
-      <rect x="180" y="174" width="14" height="10"/>
+  <rect x="340" y="209" width="760" height="760" rx="150" fill="url(#bgApple)"/>
+  <g transform="translate(720,589) scale(0.78) translate(-720,-589)">
+    <g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="url(#axTealApple)">
+    <g transform="translate(485.6346,761.4468)"><path d="M 0,0 H 98.043 L 11.234,-193.021 h 63.83 l 17.872,-37.277 -100.085,-1.021 -17.362,-41.362 -70.978,-1.021 -10.213,-28.085 -30.638,1.021 z"/></g>
+    <g transform="translate(600.2729,751.2341)"><path d="m 0,0 133.021,-292.34 -32.425,0.766 -12.256,27.063 -68.425,-0.255 -69.83,154.851 z"/></g>
+    <g transform="translate(526.741,782.8936)"><path d="M 0,0 -12,-27.149 H 6.128 L 18.553,0.085 Z"/></g>
+    <g transform="translate(627.8474,472.1702)"><path d="M 0,0 23.234,-50.809 71.745,-50.043 50.298,0.255 Z"/></g>
+    <g transform="translate(707.89,445.7447)"><path d="M 0,0 H 27.574 L 40.213,-27.064 11.872,-27.319 Z"/></g>
+    <g transform="translate(671.507,408)"><path d="M 0,0 18.298,-41.872 59.745,-41.957 42.128,0.34 Z"/></g>
+    <g transform="translate(726.4857,407.9149)"><path d="m 0,0 8,-19.617 18.043,-0.128 -8.458,19.522 z"/></g>
+    <g transform="translate(756.0528,400.766)"><path d="M 0,0 11.586,-28.411 37.717,-28.596 25.468,-0.324 Z"/></g>
+    <g transform="translate(452.1526,472.1702)"><path d="m 0,0 -23.234,-50.809 -48.511,0.766 21.447,50.298 z"/></g>
+    <g transform="translate(372.11,445.7447)"><path d="m 0,0 h -27.574 l -12.639,-27.064 28.341,-0.255 z"/></g>
+    <g transform="translate(408.493,408)"><path d="M 0,0 -18.298,-41.872 -59.745,-41.957 -42.128,0.34 Z"/></g>
+    <g transform="translate(353.5143,407.9149)"><path d="m 0,0 -8,-19.617 -18.043,-0.128 8.458,19.522 z"/></g>
+    <g transform="translate(323.9472,400.766)"><path d="m 0,0 -11.586,-28.411 -26.131,-0.185 12.249,28.272 z"/></g>
+    <g transform="translate(600.7836,876.3405)"><path d="m 0,0 -22.213,-48.255 h 45.958 l 21.191,48 z"/></g>
+    <g transform="translate(569.726,813.4468)"><path d="M 0,0 -18.373,-39.915 H 19.641 L 37.169,-0.211 Z"/></g>
+    <g transform="translate(499.1402,802.4725)"><path d="m 0,0 -12.697,-27.583 h 26.27 l 12.113,27.437 z"/></g>
+    <g transform="translate(540.5104,814.7186)"><path d="M 0,0 -8.812,-18.501 H 9.42 l 8.406,18.403 z"/></g>
+    <g transform="translate(551.925,855.6744)"><path d="M 0,0 -12.078,-29.051 H 12.911 L 24.433,-0.154 Z"/></g>
     </g>
   </g>
 </svg>
