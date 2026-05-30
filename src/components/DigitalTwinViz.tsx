@@ -532,7 +532,7 @@ function DTVisualization({ active }: { active: number }) {
   // Slightly dim the base when overlays are visually dense (Analyze, Simulate, Optimize)
   const dim = active >= 3;
   return (
-    <svg viewBox="0 0 360 240" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+    <svg viewBox="0 0 360 240" className="dt-viz w-full h-full" preserveAspectRatio="xMidYMid meet">
       <BaseAsset dim={dim} />
       <AnimatePresence mode="sync">
         {active === 0 && <VisualizeLayer  key="visualize"  />}
@@ -635,7 +635,67 @@ export function DigitalTwinViz() {
         </motion.div>
 
         {/* Interactive grid */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* ============ DT MOBILE PREMIUM — 6 cards empilées ============ */}
+        <div className="lg:hidden mt-10 flex flex-col gap-4">
+          {layers.map((layer, i) => {
+            const Icon = layer.icon;
+            return (
+              <motion.article
+                key={layer.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.6, ease: easeLuxe, delay: i * 0.05 }}
+                className="bg-ink-800/40 border border-cream/12 rounded-2xl overflow-hidden"
+              >
+                {/* Header */}
+                <div className="flex items-start gap-4 px-5 pt-5">
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-ink-900"
+                    style={{ background: 'linear-gradient(135deg, #6DEAF2, #18B6C5)' }}
+                  >
+                    <Icon className="w-5 h-5" strokeWidth={1.6} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-mono text-[10px] tracking-wider text-cream/55 mb-0.5">
+                      STAGE {String(i + 1).padStart(2, '0')} / 06
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-cream leading-tight">
+                      {layer.title}
+                    </h3>
+                    <p className="text-sm italic mt-0.5" style={{ color: '#6DEAF2' }}>
+                      {layer.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Stage-specific visual */}
+                <div className="mx-5 mt-4 rounded-xl bg-ink-900/80 border border-cream/10 overflow-hidden">
+                  <svg
+                    viewBox="0 0 360 240"
+                    className="dt-mobile-svg w-full h-auto block"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <BaseAsset />
+                    {i === 0 && <VisualizeLayer />}
+                    {i === 1 && <CentralizeLayer />}
+                    {i === 2 && <MonitorLayer />}
+                    {i === 3 && <AnalyzeLayer />}
+                    {i === 4 && <SimulateLayer />}
+                    {i === 5 && <OptimizeLayer />}
+                  </svg>
+                </div>
+
+                {/* Description */}
+                <p className="px-5 py-5 text-[14px] text-cream/80 leading-relaxed">
+                  {layer.description}
+                </p>
+              </motion.article>
+            );
+          })}
+        </div>
+
+        <div className="hidden lg:grid mt-10 grid-cols-12 gap-10 items-start">
           {/* Left: list */}
           <div className="lg:col-span-5">
             <ul className="space-y-1" role="tablist">
@@ -784,7 +844,7 @@ export function DigitalTwinViz() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
-          className="mt-20 pt-12 border-t border-cream/10"
+          className="hidden lg:block mt-20 pt-12 border-t border-cream/10"
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 gap-x-6">
             {layers.map((layer, i) => {

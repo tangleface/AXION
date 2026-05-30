@@ -171,3 +171,10 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Digital Twin viz — Premium mobile stack: bigger text in dedicated mobile cards */
+@media (max-width: 1023px) {
+  .dt-mobile-svg text {
+    font-size: 9px;
+  }
+}

@@ -50,7 +50,7 @@ export const pillars: Pillar[] = [
       'Design de KPIs et de tableaux de bord cibles'
     ],
     triggers: [
-      { title: 'Avant un investissement majeur', description: 'Vous envisagez un projet >€500k et souhaitez sécuriser la décision avec un diagnostic indépendant.' },
+      { title: 'Avant une décision structurante', description: 'Vous engagez une décision à fort impact opérationnel et souhaitez la sécuriser par un diagnostic indépendant en amont.' },
       { title: 'Avant une transformation', description: 'Vous lancez un programme de transformation et avez besoin d\'une lecture stratégique partageable avec votre comité.' },
       { title: 'Doute sur la maturité', description: 'Vous ne savez pas où votre organisation se situe vraiment sur la digitalisation, l\'IA ou l\'industrie 4.0.' },
       { title: 'Refonte de modèle', description: 'Votre business model évolue (nouvelle offre, internationalisation, B2B2C) et il faut repenser les fondations.' }

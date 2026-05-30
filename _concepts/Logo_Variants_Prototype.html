@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Axion — Prototype variantes logo (B socle lumineux · C 3D CSS subtil)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6F3ED;
+    --cream-2: #efe9de;
+    --ink: #0D0D0D;
+    --ink-soft: rgba(13,13,13,0.72);
+    --ink-mute: rgba(13,13,13,0.55);
+    --border: rgba(13,13,13,0.10);
+    --teal-deep: #063E46;
+    --teal-primary: #0F6F78;
+    --teal-electric: #18B6C5;
+    --teal-glow: #6DEAF2;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 40px 28px 80px; }
+
+  /* ===== TOP ===== */
+  .head { margin-bottom: 36px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--teal-primary); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1.05; max-width: 920px;
+  }
+  h1 .accent {
+    background: linear-gradient(95deg, var(--teal-deep) 0%, var(--teal-primary) 28%, var(--teal-electric) 65%, var(--teal-glow) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .lead { font-size: 15px; color: var(--ink-soft); margin-top: 14px; max-width: 760px; line-height: 1.55; }
+  .note {
+    background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--teal-primary);
+    padding: 14px 18px; border-radius: 6px; font-size: 13px; color: var(--ink-soft); margin-top: 18px; line-height: 1.6;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ===== GRID ===== */
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 32px; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; display: flex; flex-direction: column;
+  }
+  .card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .card-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--teal-primary);
+  }
+  .card-tag strong { color: var(--ink); font-weight: 700; }
+  .replay {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--ink); color: var(--cream); border: 0; padding: 6px 10px; border-radius: 4px; cursor: pointer;
+  }
+  .replay:hover { opacity: 0.85; }
+
+  /* ===== STAGE (logo zone) ===== */
+  .stage {
+    aspect-ratio: 1; border-radius: 10px; position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .stage svg { width: 100%; height: 100%; display: block; }
+
+  /* Variant-specific stage backgrounds */
+  .stage.stageB {
+    background: radial-gradient(ellipse at 50% 55%, rgba(13,13,13,0.06) 0%, rgba(13,13,13,0.02) 35%, transparent 70%), var(--cream);
+  }
+  .stage.stageC {
+    background: radial-gradient(ellipse at 50% 60%, rgba(6,62,70,0.08) 0%, transparent 60%), var(--cream);
+    perspective: 1200px;
+  }
+  .stage3d-inner {
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    animation: float3d 9s ease-in-out infinite;
+  }
+  @keyframes float3d {
+    0%, 100% { transform: rotateY(-3deg) rotateX(1deg); }
+    50%      { transform: rotateY(3deg) rotateX(-1deg); }
+  }
+
+  /* === ANIMATIONS de la séquence logo (pour les 3 variantes) === */
+  .logo-svg .corner-glow { opacity: 0; transform-origin: center; transform-box: fill-box; }
+  .logo-svg .corner-pt   { opacity: 0; transform-origin: center; transform-box: fill-box; transform: scale(0); }
+  .logo-svg .contour-piece path { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
+  .logo-svg .fill-piece  { opacity: 0; }
+  .logo-svg .pulse-ring  { opacity: 0; }
+
+  /* timeline */
+  .animate .corner-pt.p0   { animation: ptIn 0.5s ease-out 0.5s forwards; }
+  .animate .corner-pt.p1   { animation: ptIn 0.5s ease-out 0.8s forwards; }
+  .animate .corner-pt.p2   { animation: ptIn 0.5s ease-out 1.1s forwards; }
+  .animate .corner-glow.g0 { animation: glowIn 1.0s ease-out 0.6s forwards; }
+  .animate .corner-glow.g1 { animation: glowIn 1.0s ease-out 0.9s forwards; }
+  .animate .corner-glow.g2 { animation: glowIn 1.0s ease-out 1.2s forwards; }
+  .animate .contour-piece.c0 path { animation: trace 2.2s ease-out 1.4s forwards; }
+  .animate .contour-piece.c1 path { animation: trace 2.2s ease-out 1.75s forwards; }
+  .animate .fill-piece { animation: fillIn 0.55s ease-out forwards; animation-delay: var(--fd, 3.7s); }
+  .animate .pulse-ring.r0 { animation: pulse 3.6s ease-out 4.8s infinite; }
+  .animate .pulse-ring.r1 { animation: pulse 3.6s ease-out 5.5s infinite; }
+  .animate .pulse-ring.r2 { animation: pulse 3.6s ease-out 6.2s infinite; }
+
+  @keyframes ptIn   { to { opacity: 1; transform: scale(1); } }
+  @keyframes glowIn { to { opacity: 0.85; } }
+  @keyframes trace  { to { stroke-dashoffset: 0; opacity: 1; } }
+  @keyframes fillIn { to { opacity: 0.55; } }
+  @keyframes pulse  { 0% { r: 12; opacity: 0.55; } 100% { r: 46; opacity: 0; } }
+
+  /* === VARIANTE B specific: socle horizontal + scan light === */
+  .socle {
+    position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%);
+    height: 2px; width: 0; border-radius: 2px; opacity: 0;
+    background: linear-gradient(90deg, transparent, var(--teal-glow), var(--teal-electric), var(--teal-glow), transparent);
+    box-shadow: 0 0 24px rgba(24,182,197,0.55), 0 0 60px rgba(109,234,242,0.30);
+  }
+  .socle::after {
+    content: ""; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+    width: 60%; height: 14px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(24,182,197,0.30), transparent 65%); filter: blur(8px);
+  }
+  .animate .socle {
+    animation: socleIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards, socleBreath 5s ease-in-out 1.6s infinite;
+  }
+  @keyframes socleIn   { to { width: 65%; opacity: 1; } }
+  @keyframes socleBreath { 0%, 100% { opacity: 0.95; } 50% { opacity: 0.55; } }
+
+  /* Scan light vertical traversant le logo */
+  .scanline {
+    position: absolute; left: 0; right: 0; top: -20%; height: 18%; opacity: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(109,234,242,0.35), transparent);
+    mix-blend-mode: screen;
+  }
+  .animate .scanline { animation: scan 2.4s cubic-bezier(0.45,0,0.55,1) 3.6s forwards; }
+  @keyframes scan { 0% { opacity: 0; top: 110%; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; top: -20%; } }
+
+  /* === VARIANTE C: shadow projetée teal === */
+  .shadow3d {
+    position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%);
+    width: 60%; height: 24px; border-radius: 50%; opacity: 0;
+    background: radial-gradient(ellipse, rgba(6,62,70,0.55), transparent 70%);
+    filter: blur(14px);
+  }
+  .animate .shadow3d { animation: shIn 1.4s ease-out 1.0s forwards, shBreath 9s ease-in-out infinite; }
+  @keyframes shIn { to { opacity: 0.9; } }
+  @keyframes shBreath { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(0.92); } }
+
+  /* ===== Footer card details ===== */
+  .card-foot { margin-top: 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+  .card-foot strong { color: var(--ink); }
+  .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; margin-top: 12px; font-family: var(--mono); font-size: 10.5px; }
+  .specs .k { color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.15em; }
+  .specs .v { color: var(--ink); }
+
+  /* ===== Insight rewrites block ===== */
+  .insight-block {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px 26px; margin-top: 40px;
+  }
+  .insight-block h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .insight-block .sub { font-size: 13px; color: var(--ink-mute); margin-bottom: 18px; }
+  .insight-block .before { background: var(--cream-2); border-left: 3px solid #c44; padding: 12px 16px; border-radius: 6px; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; }
+  .insight-block .before strong { color: #c44; }
+  .options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 900px) { .options { grid-template-columns: 1fr; } }
+  .opt {
+    border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; background: var(--cream-2);
+  }
+  .opt .badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--teal-primary); margin-bottom: 8px; }
+  .opt .ttl { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--ink); }
+  .opt .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* Footer */
+  .legal { margin-top: 36px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow">Prototype · comparaison visuelle · non-applied</div>
+    <h1>Logo Axion — variantes <span class="accent">B & C</span>, plus la base actuelle pour référence.</h1>
+    <p class="lead">
+      Trois rendus côte à côte, avec la même séquence symbolique (3 coins illuminés → tracé du contour réel → illumination de chaque pièce). Les variantes B et C ajoutent une couche d'ambiance différente — socle lumineux pour B, micro-3D pour C. Survole ou clique sur « ↻ Replay » pour rejouer la séquence dans chaque cadre.
+    </p>
+    <div class="note">
+      <strong>Important.</strong> Ce fichier est un <em>prototype</em> autonome (HTML/CSS/SVG pur, aucune dépendance Framer Motion). Le but : juger l'ambiance, pas le pixel-perfect. Le code du site Next.js n'a <strong>pas été modifié</strong>. Aucune décision n'est appliquée tant que tu n'as pas choisi.
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ============ VARIANTE A ============ -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-tag"><strong>A</strong> · Légère (état actuel, référence)</div>
+        <button class="replay" data-target="stageA">↻ Replay</button>
+      </div>
+      <div class="stage stageA" id="stageA">
+        <!-- logo SVG identique pour A/B/C, injecté par JS -->
+      </div>
+      <div class="card-foot">
+        <strong>Intention.</strong> L'animation actuelle, mieux cadrée. Logo plus à droite, opacité finale remontée à 0.65, halo cyan pulsant doux.
+        <div class="specs">
+          <span class="k">Tech</span><span class="v">SVG + Framer Motion</span>
+          <span class="k">Perf</span><span class="v">excellente</span>
+          <span class="k">Effort</span><span class="v">~1h</span>
+          <span class="k">Risque</span><span class="v">nul</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VARIANTE B ============ -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-tag"><strong>B</strong> · Socle lumineux + scan light</div>
+        <button class="replay" data-target="stageB">↻ Replay</button>
+      </div>
+      <div class="stage stageB" id="stageB">
+        <div class="socle"></div>
+        <div class="scanline"></div>
+      </div>
+      <div class="card-foot">
+        <strong>Intention.</strong> Espace radial sombre subtil derrière le A · ligne horizontale lumineuse qui s'étire sous le logo (le socle) · une lumière verticale parcourt le contour de bas en haut une fois la trace terminée.
+        <div class="specs">
+          <span class="k">Tech</span><span class="v">SVG + CSS animations</span>
+          <span class="k">Perf</span><span class="v">très bonne</span>
+          <span class="k">Effort</span><span class="v">~3h</span>
+          <span class="k">Risque</span><span class="v">faible (calibrage subtil)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VARIANTE C ============ -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-tag"><strong>C</strong> · 3D CSS subtil + ombre projetée</div>
+        <button class="replay" data-target="stageC">↻ Replay</button>
+      </div>
+      <div class="stage stageC" id="stageC">
+        <div class="stage3d-inner" id="stageCInner"></div>
+        <div class="shadow3d"></div>
+      </div>
+      <div class="card-foot">
+        <strong>Intention.</strong> Légère perspective CSS · le A oscille très doucement sur l'axe Y (±3°, 9s par cycle) · une ombre teal projetée sous le logo qui respire. Pas de Three.js, pas de WebGL.
+        <div class="specs">
+          <span class="k">Tech</span><span class="v">SVG + CSS perspective</span>
+          <span class="k">Perf</span><span class="v">bonne (GPU compositing)</span>
+          <span class="k">Effort</span><span class="v">~3h</span>
+          <span class="k">Risque</span><span class="v">modéré — risque « gadget » si trop marqué</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ INSIGHT REWRITES ============ -->
+  <div class="insight-block">
+    <h2>Section Insight — proposition de remplacement (sans prix)</h2>
+    <div class="sub">Une seule occurrence dans <code>src/data/pillars.ts</code>, trigger #1 du pilier Insight.</div>
+
+    <div class="before">
+      <strong>Avant.</strong> « Avant un investissement majeur — Vous envisagez un projet >€500k et souhaitez sécuriser la décision avec un diagnostic indépendant. »
+    </div>
+
+    <div class="options">
+      <div class="opt">
+        <div class="badge">Option 1 · recommandée</div>
+        <div class="ttl">Avant une décision structurante</div>
+        <div class="desc">Vous engagez une décision à fort impact opérationnel et souhaitez la sécuriser par un diagnostic indépendant en amont.</div>
+      </div>
+      <div class="opt">
+        <div class="badge">Option 2</div>
+        <div class="ttl">Avant un projet à fort enjeu</div>
+        <div class="desc">Vous lancez un projet déterminant pour votre organisation et voulez objectiver les choix avant l'engagement des ressources.</div>
+      </div>
+      <div class="opt">
+        <div class="badge">Option 3</div>
+        <div class="ttl">Avant une transformation critique</div>
+        <div class="desc">Vous préparez un changement à fort impact sur vos opérations et souhaitez cadrer la trajectoire avec une lecture stratégique indépendante.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal">PROTOTYPE · AXION STUDIO · NON-APPLIED · ATTEND VALIDATION</div>
+</div>
+
+<!-- ============ LOGO SVG TEMPLATE (cloné dans les 3 stages) ============ -->
+<template id="logoTemplate">
+<svg class="logo-svg animate" viewBox="350 240 740 760" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="grFill__ID" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
+      <stop offset="0" stop-color="#18B6C5"/>
+      <stop offset="0.55" stop-color="#0F6F78"/>
+      <stop offset="1" stop-color="#063E46"/>
+    </linearGradient>
+    <linearGradient id="grContour__ID" gradientUnits="userSpaceOnUse" x1="540" y1="906" x2="540" y2="272">
+      <stop offset="0" stop-color="#0F6F78" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#18B6C5" stop-opacity="1"/>
+      <stop offset="1" stop-color="#6DEAF2" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="grGlow__ID" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6DEAF2" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#18B6C5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fill cascade (every piece illuminates) -->
+  <g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="url(#grFill__ID)" class="fill-group">
+    <!-- pieces injected here -->
+  </g>
+
+  <!-- Contour trace (body left + right halves) -->
+  <g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="none" stroke="url(#grContour__ID)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" class="contour-group">
+    <!-- 2 body pieces injected here -->
+  </g>
+
+  <!-- 3 corner glows -->
+  <circle class="corner-glow g0" cx="432"  cy="906" r="34" fill="url(#grGlow__ID)"/>
+  <circle class="corner-glow g1" cx="801"  cy="272" r="34" fill="url(#grGlow__ID)"/>
+  <circle class="corner-glow g2" cx="1008" cy="906" r="34" fill="url(#grGlow__ID)"/>
+
+  <!-- 3 corner points -->
+  <circle class="corner-pt p0" cx="432"  cy="906" r="12" fill="#18B6C5" stroke="#6DEAF2" stroke-width="2"/>
+  <circle class="corner-pt p1" cx="801"  cy="272" r="12" fill="#18B6C5" stroke="#6DEAF2" stroke-width="2"/>
+  <circle class="corner-pt p2" cx="1008" cy="906" r="12" fill="#18B6C5" stroke="#6DEAF2" stroke-width="2"/>
+
+  <!-- Pulse rings -->
+  <circle class="pulse-ring r0" cx="432"  cy="906" fill="none" stroke="#6DEAF2" stroke-width="1.4"/>
+  <circle class="pulse-ring r1" cx="801"  cy="272" fill="none" stroke="#6DEAF2" stroke-width="1.4"/>
+  <circle class="pulse-ring r2" cx="1008" cy="906" fill="none" stroke="#6DEAF2" stroke-width="1.4"/>
+</svg>
+</template>
+
+<script>
+// === 18 official Axion logo pieces (matches public/logo.svg) ===
+const PIECES = [
+  ['485.6346,761.4468','M 0,0 H 98.043 L 11.234,-193.021 h 63.83 l 17.872,-37.277 -100.085,-1.021 -17.362,-41.362 -70.978,-1.021 -10.213,-28.085 -30.638,1.021 z'],
+  ['600.2729,751.2341','m 0,0 133.021,-292.34 -32.425,0.766 -12.256,27.063 -68.425,-0.255 -69.83,154.851 z'],
+  ['526.741,782.8936','M 0,0 -12,-27.149 H 6.128 L 18.553,0.085 Z'],
+  ['627.8474,472.1702','M 0,0 23.234,-50.809 71.745,-50.043 50.298,0.255 Z'],
+  ['707.89,445.7447','M 0,0 H 27.574 L 40.213,-27.064 11.872,-27.319 Z'],
+  ['671.507,408','M 0,0 18.298,-41.872 59.745,-41.957 42.128,0.34 Z'],
+  ['726.4857,407.9149','m 0,0 8,-19.617 18.043,-0.128 -8.458,19.522 z'],
+  ['756.0528,400.766','M 0,0 11.586,-28.411 37.717,-28.596 25.468,-0.324 Z'],
+  ['452.1526,472.1702','m 0,0 -23.234,-50.809 -48.511,0.766 21.447,50.298 z'],
+  ['372.11,445.7447','m 0,0 h -27.574 l -12.639,-27.064 28.341,-0.255 z'],
+  ['408.493,408','M 0,0 -18.298,-41.872 -59.745,-41.957 -42.128,0.34 Z'],
+  ['353.5143,407.9149','m 0,0 -8,-19.617 -18.043,-0.128 8.458,19.522 z'],
+  ['323.9472,400.766','m 0,0 -11.586,-28.411 -26.131,-0.185 12.249,28.272 z'],
+  ['600.7836,876.3405','m 0,0 -22.213,-48.255 h 45.958 l 21.191,48 z'],
+  ['569.726,813.4468','M 0,0 -18.373,-39.915 H 19.641 L 37.169,-0.211 Z'],
+  ['499.1402,802.4725','m 0,0 -12.697,-27.583 h 26.27 l 12.113,27.437 z'],
+  ['540.5104,814.7186','M 0,0 -8.812,-18.501 H 9.42 l 8.406,18.403 z'],
+  ['551.925,855.6744','M 0,0 -12.078,-29.051 H 12.911 L 24.433,-0.154 Z']
+];
+const BODY_INDICES = new Set([0, 1]);
+
+function buildLogo(stageEl, idSuffix, intoInner) {
+  const tpl = document.getElementById('logoTemplate');
+  const node = tpl.content.cloneNode(true);
+  // Unique gradient IDs (so multiple SVGs don't collide)
+  node.querySelector('svg').innerHTML = node.querySelector('svg').innerHTML.replace(/__ID/g, idSuffix);
+
+  const svg = node.querySelector('svg');
+  const fillGroup = svg.querySelector('.fill-group');
+  const contourGroup = svg.querySelector('.contour-group');
+
+  // Inject 18 fill pieces with staggered delays
+  PIECES.forEach(([tr, d], idx) => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(${tr})`);
+    g.setAttribute('class', 'fill-piece');
+    g.style.setProperty('--fd', (3.7 + idx * 0.06) + 's');
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    g.appendChild(p);
+    fillGroup.appendChild(g);
+  });
+
+  // Inject 2 contour pieces with pathLength approx via stroke-dasharray trick
+  PIECES.forEach(([tr, d], idx) => {
+    if (!BODY_INDICES.has(idx)) return;
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(${tr})`);
+    g.setAttribute('class', 'contour-piece c' + (idx === 0 ? 0 : 1));
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('pathLength', '1');
+    p.setAttribute('stroke-dasharray', '1');
+    p.setAttribute('stroke-dashoffset', '1');
+    g.appendChild(p);
+    contourGroup.appendChild(g);
+  });
+
+  if (intoInner) {
+    document.getElementById(intoInner).appendChild(node);
+  } else {
+    stageEl.appendChild(node);
+  }
+}
+
+// Build the 3 stages
+buildLogo(document.getElementById('stageA'), 'A');
+buildLogo(document.getElementById('stageB'), 'B');
+buildLogo(null, 'C', 'stageCInner');
+
+// Replay buttons
+document.querySelectorAll('.replay').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    const svg = target.querySelector('svg.logo-svg');
+    if (!svg) return;
+    svg.classList.remove('animate');
+    // also reset the variant-specific elements
+    const socle = target.querySelector('.socle');
+    const scan = target.querySelector('.scanline');
+    const shadow = target.querySelector('.shadow3d');
+    [socle, scan, shadow].forEach(el => { if (el) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; } });
+    void svg.offsetWidth; // reflow
+    svg.classList.add('animate');
+  });
+});
+</script>
+</body>
+</html>

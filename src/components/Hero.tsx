@@ -58,8 +58,38 @@ function HeroLogoWithConstellation() {
   const FILL_START = 3.7;    // every piece illuminates after the trace
 
   return (
-    <div className="hidden lg:block absolute right-[2%] top-1/2 -translate-y-1/2 w-[38vw] max-w-[560px] pointer-events-none z-0">
-      <svg viewBox="350 240 740 760" className="w-full h-auto">
+    <div
+      className="hidden lg:block absolute right-[1%] top-1/2 -translate-y-1/2 w-[38vw] max-w-[520px] pointer-events-none z-0"
+      style={{ perspective: '1200px' }}
+    >
+      {/* Soft dark space behind the logo */}
+      <div
+        className="absolute inset-0"
+        aria-hidden="true"
+        style={{
+          background:
+            'radial-gradient(ellipse at 50% 55%, rgba(13,13,13,0.045) 0%, rgba(13,13,13,0.015) 35%, transparent 72%)'
+        }}
+      />
+      {/* Projected teal shadow under the logo */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 bottom-[7%] w-[58%] h-6 rounded-[50%] pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse, rgba(6,62,70,0.55), transparent 70%)',
+          filter: 'blur(14px)'
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0.55, 0.85, 0.55], scale: [0.92, 1, 0.92] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
+      />
+      {/* 3D oscillation wrapper — subtle premium float */}
+      <motion.div
+        className="w-full"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ rotateY: [-3, 3, -3], rotateX: [1, -1, 1] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      >
+      <svg viewBox="350 240 740 760" className="w-full h-auto block">
         <defs>
           <linearGradient id="axFill" gradientUnits="userSpaceOnUse" x1="540" y1="876" x2="540" y2="358">
             <stop offset="0" stopColor="#18B6C5" />
@@ -171,6 +201,7 @@ function HeroLogoWithConstellation() {
           />
         ))}
       </svg>
+      </motion.div>
     </div>
   );
 }
