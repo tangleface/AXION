@@ -59,7 +59,7 @@ function HeroLogoWithConstellation() {
 
   return (
     <div
-      className="hidden lg:block absolute right-[1%] top-1/2 -translate-y-1/2 w-[38vw] max-w-[520px] pointer-events-none z-0"
+      className="relative w-full max-w-[460px] mx-auto pointer-events-none"
       style={{ perspective: '1200px' }}
     >
       {/* Soft dark space behind the logo */}
@@ -243,13 +243,14 @@ export function Hero() {
         <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-ink-900/10 to-transparent" />
       </div>
 
-      {/* Logo pixel-perfect + Constellation */}
-      <HeroLogoWithConstellation />
-
       <motion.div
         style={{ y, opacity, scale }}
         className="container-luxe relative z-20"
       >
+        {/* Hero grid 7/5 — text gauche, logo droite (plus de overlap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+          {/* LEFT — contenu texte */}
+          <div className="lg:col-span-7">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -366,6 +367,12 @@ export function Hero() {
             Découvrir notre approche
           </a>
         </motion.div>
+          </div>
+          {/* RIGHT — logo (lg+ seulement, masqué mobile) */}
+          <div className="hidden lg:col-span-5 lg:flex justify-center items-center">
+            <HeroLogoWithConstellation />
+          </div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
