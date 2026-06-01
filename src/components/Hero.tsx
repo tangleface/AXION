@@ -45,9 +45,9 @@ function HeroLogoWithConstellation() {
   // Narrative: corners -> connection along the real shape -> full identity.
   // ===================================================================
   const POINTS = [
-    { id: 'foot-l', x: 432,  y: 906, delay: 0.5 },  // bottom-left
-    { id: 'apex',   x: 801,  y: 272, delay: 0.8 },  // top / head
-    { id: 'foot-r', x: 1008, y: 906, delay: 1.1 }   // bottom-right
+    { id: 'foot-l', x: 382,  y: 944, delay: 0.5 },  // true bottom-left extremity (outer tip of piece 12)
+    { id: 'apex',   x: 801,  y: 272, delay: 0.8 },  // top apex (piece 13)
+    { id: 'foot-r', x: 1058, y: 944, delay: 1.1 }   // true bottom-right extremity (v3 of piece 7, symmetric with foot-l)
   ];
   // The connecting line = the real logo body outline (left + right halves).
   // Stroked via pathLength so it draws along the EXACT Axion shape.
@@ -59,7 +59,7 @@ function HeroLogoWithConstellation() {
 
   return (
     <div
-      className="relative w-full max-w-[460px] mx-auto pointer-events-none"
+      className="relative w-full max-w-[490px] mx-auto pointer-events-none"
       style={{ perspective: '1200px' }}
     >
       {/* Soft dark space behind the logo */}
@@ -122,20 +122,54 @@ function HeroLogoWithConstellation() {
           ))}
         </motion.g>
 
-        {/* (3) FULL ILLUMINATION — every piece lights up in cascade, after the trace */}
-        <motion.g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)" fill="url(#axFill)">
-          {LOGO_PATHS.map((p, idx) => (
-            <motion.g
-              key={`fill${idx}`}
-              transform={`translate(${p.o[0]},${p.o[1]})`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              transition={{ duration: 0.5, delay: FILL_START + idx * 0.06, ease: easeLuxe }}
-            >
-              <path d={p.d} />
-            </motion.g>
-          ))}
-        </motion.g>
+        {/* (3) FULL ILLUMINATION — chaque pièce (corps + fragments) : tracé + remplissage.
+            Les 16 fragments d'extrémités reçoivent le MÊME traitement que le corps :
+            outline qui se dessine + remplissage plus opaque pour enlever l'effet transparent. */}
+        <g transform="matrix(1.3333333,0,0,-1.3333333,0,1440)">
+          {LOGO_PATHS.map((p, idx) => {
+            const isBody = BODY.has(idx);
+            // Dégradé radial d'opacité : plus on s'éloigne du centre du A, plus la pièce est opaque.
+            // Centre visuel ≈ (720, 600). Distance max ≈ 480 (les vrais coins).
+            // Map : centre 0.52  →  extrémités 0.95.
+            const dx = p.o[0] - 720;
+            const dy = p.o[1] - 600;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const t = Math.min(dist / 480, 1);
+            const finalOpacity = 0.52 + t * 0.43; // 0.52 → 0.95 selon distance
+            const traceDelay = FILL_START + idx * 0.07;
+            const fillDelay = FILL_START + idx * 0.07 + (isBody ? 0 : 0.18);
+            return (
+              <g key={`piece${idx}`} transform={`translate(${p.o[0]},${p.o[1]})`}>
+                {/* (a) Remplissage d'abord — pose la couleur de fond */}
+                <motion.path
+                  d={p.d}
+                  fill="url(#axFill)"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: finalOpacity }}
+                  transition={{ duration: 0.5, delay: fillDelay, ease: easeLuxe }}
+                />
+                {/* (b) Tracé d'outline PAR-DESSUS — uniquement pour les fragments, pour qu'il
+                       reste visible et ne soit pas masqué par le remplissage */}
+                {!isBody && (
+                  <motion.path
+                    d={p.d}
+                    fill="none"
+                    stroke="url(#axContour)"
+                    strokeWidth={2.6}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{
+                      pathLength: { duration: 0.7, ease: easeLuxe, delay: traceDelay },
+                      opacity: { duration: 0.3, delay: traceDelay }
+                    }}
+                  />
+                )}
+              </g>
+            );
+          })}
+        </g>
 
         {/* (2) Connecting line = real logo outline traced (follows exact shape) */}
         <motion.g
